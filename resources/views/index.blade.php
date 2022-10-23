@@ -1,5 +1,5 @@
 @extends('layouts.template')
 
 @section('content')
-    <h1>halo {{ $username }}</h1>
+    <h1 class="text-light">halo {{ $username }}</h1>
 @endsection

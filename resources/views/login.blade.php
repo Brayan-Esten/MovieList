@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <div class="container mt-4">
+    <div class="container mt-4 p-4">
         <div class="row justify-content-center">
-            <div class="col-md-5">
+            <div class="col-md-6">
 
                 @if(session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -20,35 +20,49 @@
                 </div>
                 @endif
 
-                <main class="w-100 m-auto">
-                    <h1 class="h3 mb-3 fw-normal">Please Log In</h1>
-                    <form action="/login" method="post">
+                <div class="text-light">
+                    <h3 class="font-weight-bold d-flex justify-content-center">
+                        <span>
+                            Hello, welcome back to&nbsp
+                        </span>
+                        <span class="d-flex" style="font-weight: 750;">
+                            <span style="color: var(--red);">Movie</span>
+                            <span style="color: var(--white)">List</span>
+                        </span>
+                    </h3>
+
+                    <form class="mt-4" action="/login" method="post">
                         @csrf
 
-                        {{-- username --}}
-                        <div class="form-floating">
-                            <input type="text" id="username" name="username" placeholder="Username" autofocus
-                                class="form-control @error('email') is-invalid @enderror" value={{ old('username') }}>
-                            <label for="username">Username</label>
-                            @error('username')
-                                {{ $message }}
+                        {{-- Email --}}
+                        <div class="input-group has-validation d-flex mb-3">
+                            <span class="input-group-text">Email</span>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" autofocus
+                                class="form-control @error('email') is-invalid @enderror" 
+                                value={{ old('email') }}>
+                            @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
 
                         {{-- password --}}
-                        <div class="form-floating">
-                            <input type="password" id="password" name="password" placeholder="Password"
+                        <div class="input-group has-validation d-flex mb-3">
+                            <span class="input-group-text">Password</span>
+                            <input type="password" id="password" name="password" placeholder="Enter your password"
                                 class="form-control" >
-                            <label for="password">Password</label>
                         </div>
 
-                        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">LOGIN</button>
+                        <button class="w-100 btn btn-primary mt-3" type="submit">
+                            Login <i class="bi bi-box-arrow-in-right"></i>
+                        </button>
 
                     </form>
                     <small class="d-block text-center mt-4">
-                        Not registered ? register <a href="/register">here</a>
+                        Don't have an account ? Register <a href="/register" style="color: var(--red)">here</a>
                     </small>
-                </main>
+                </div>
 
             </div>
         </div>

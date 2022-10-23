@@ -2,19 +2,29 @@
 
 @section('content')
     
-    <div class="container mt-4">
+    <div class="container mt-4 p-4">
         <div class="row justify-content-center">
-            <div class="col-md-5">
-                <main class="w-100 m-auto">
-                    <h1 class="h3 mb-3 fw-normal">Registration Form</h1>
-                    <form action="/register" method="post">
+            <div class="col-md-6">
+
+                <div class="text-light">
+                    <h3 class="font-weight-bold d-flex justify-content-center">
+                        <span>
+                            Hello, welcome back to&nbsp
+                        </span>
+                        <span class="d-flex" style="font-weight: 750;">
+                            <span style="color: var(--red);">Movie</span>
+                            <span style="color: var(--white)">List</span>
+                        </span>
+                    </h3>
+
+                    <form class="mt-4" action="/register" method="post">
                         @csrf
 
                         {{-- username --}}
-                        <div class="form-floating">
+                        <div class="input-group has-validation d-flex mb-3">
+                            <span class="input-group-text">Username</span>
                             <input type="text" id="username" name="username" placeholder="Username"
-                                class="form-control rounded-top @error('username') is-invalid @enderror" value="{{ old('username') }}">
-                            <label for="username">Username</label>
+                                class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}">
                             @error('username')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -23,10 +33,10 @@
                         </div>
 
                         {{-- email --}}
-                        <div class="form-floating">
+                        <div class="input-group has-validation d-flex mb-3">
+                            <span class="input-group-text">Email</span>
                             <input type="text" id="email" name="email" placeholder="Email"
                                 class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
-                            <label for="email">Email</label>
                             @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -35,10 +45,10 @@
                         </div>
 
                         {{-- password --}}
-                        <div class="form-floating">
+                        <div class="input-group has-validation d-flex mb-3">
+                            <span class="input-group-text">Password</span>
                             <input type="password" id="password" name="password" placeholder="Password"
                                 class="form-control @error('password') is-invalid @enderror">
-                            <label for="password">Password</label>
                             @error('password')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -47,10 +57,10 @@
                         </div>
 
                         {{-- password confirmation --}}
-                        <div class="form-floating">
+                        <div class="input-group has-validation d-flex mb-3">
+                            <span class="input-group-text">Confirm Password</span>
                             <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password"
                                 class="form-control @error('password') is-invalid @enderror">
-                            <label for="password_confirmation">Confirm Password</label>
                             @error('password_confirmation')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -58,14 +68,15 @@
                             @enderror
                         </div>
 
-
-                        <button class="w-100 btn btn-lg btn-primary mt-4" type="submit">Register</button>
+                        <button class="w-100 btn btn-primary mt-3" type="submit">
+                            Register
+                        </button>
                         
                     </form>
                     <small class="d-block text-center mt-4">
-                        Already registered ? <a href="/login">login</a>
+                        Already have an account ? Login <a href="/login" style="color: var(--red);">here</a>
                     </small>
-                </main>
+                </div>
             </div>
         </div>
     </div>
