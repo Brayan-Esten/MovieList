@@ -1,0 +1,27 @@
+.input-group-text {
+    width: 33%;
+    background-color: var(--grey);
+    color: #bbb;
+    border: none;
+}
+
+.input-group input {
+    width: 67%;
+    background-color: var(--grey);
+    color: #fff;
+    border: none;
+}
+
+.btn,
+.btn:hover {
+    border: none;
+}
+
+.btn-primary,
+.btn-primary:hover {
+    background-color: var(--red);
+}
+
+.my-button:not(:disabled):not(:disabled):active{
+    background-color: var(--red);
+}

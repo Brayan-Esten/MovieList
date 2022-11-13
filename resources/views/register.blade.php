@@ -68,7 +68,7 @@
                             @enderror
                         </div>
 
-                        <button class="w-100 btn btn-primary mt-3" type="submit">
+                        <button class="my-button btn btn-primary w-100 mt-3" type="submit">
                             Register
                         </button>
                         

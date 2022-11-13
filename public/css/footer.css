@@ -1,0 +1,24 @@
+footer {
+    min-height: 150px;
+    background-color: var(--grey);
+    font-size: 0.8rem;
+}
+
+.soc-med a {
+    font-size: 1.3rem;
+    color: #bbb;
+}
+
+.soc-med a:hover,
+.footer-links a,
+.footer-links span {
+    color: #fff;
+}
+
+.footer-links a:hover {
+    text-decoration: underline !important;
+}
+
+small a:hover{
+    text-decoration: underline;
+}

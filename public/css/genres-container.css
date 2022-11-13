@@ -1,0 +1,22 @@
+#genre .carousel-inner{
+    display: flex;
+    padding: 1em;
+}
+
+#genre .carousel-item{
+    display: block;
+    flex: 0 0 10%;
+    margin: 0 .5em;
+}
+
+.genre-card{
+    height: auto;
+    background-color: var(--grey);
+    border-radius: 10px;
+}
+
+.sort-option{
+    height: auto;
+    background-color: var(--grey);
+    border-radius: 10px;
+}

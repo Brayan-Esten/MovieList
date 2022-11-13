@@ -16,7 +16,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         
-            <ul class="navbar-nav w-50 d-flex justify-content-around ms-auto">
+            <ul class="navbar-nav d-flex justify-content-around ms-auto" style="width: 67%;">
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home</a>
                 </li>
@@ -26,8 +26,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/actors">Actors</a>
                 </li>
-            
+
                 @auth
+                    @can('user')
+                        <li class="nav-item">
+                            <a href="/watchlist" class="nav-link">
+                                My Watchlist
+                            </a>
+                        </li>
+                    @endcan
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                             style="font-size: 1.2rem;">
@@ -35,7 +42,6 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                            <li><a class="dropdown-item" href="/watchlist">My Watchlist</a></li>
                             <li>
                                 <form action="/logout" method="post">
                                     @csrf
@@ -59,6 +65,7 @@
                         </a>
                     </li>
                 @endauth
+
             </ul>
         </div>
 
