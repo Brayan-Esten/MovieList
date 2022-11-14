@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Genre extends Model
+class Actor extends Model
 {
     use HasFactory;
 
-    public function movies(){
-        return $this->belongsToMany(Movie::class);
-    }
+    protected $guarded = ['id'];
 }

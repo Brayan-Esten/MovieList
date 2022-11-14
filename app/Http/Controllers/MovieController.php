@@ -11,11 +11,9 @@ class MovieController extends Controller
     //
     public function index(){
 
-        $movies = Movie::all();
+        $movies = Movie::with('genres')->get();
 
         $genres = Genre::all();
-
-        // dd($movies);
 
         $carousels = $movies->slice(rand(0, $movies->count() - 4), 3);
 

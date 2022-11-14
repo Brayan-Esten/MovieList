@@ -56,6 +56,10 @@ class GenreSeeder extends Seeder
         ]);
 
         Genre::create([
+            'type' => 'Horror'
+        ]);
+
+        Genre::create([
             'type' => 'Animation'
         ]);
     }

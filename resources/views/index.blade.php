@@ -20,7 +20,21 @@
                     <div class="position-relative">
                         <div class="my-overlay">
                             <div class="my-info text-light d-flex flex-column">
-                                <p>{{ $c->genre }} | {{ $c->release_date }}</p>
+                                <p>
+                                    @foreach($c->genres as $g)
+
+                                        {{ $g->type }}
+
+                                        @if(! $loop->last )
+                                            {{ ', ' }}
+                                        @endif
+                                        
+                                    @endforeach
+                                    
+                                    | 
+                                    
+                                    {{ $c->release_date }}
+                                </p>
                                 <h1 style="font-weight: 700;">{{ $c->title }}</h1>
                                 <p style="font-size: .9rem">
                                     {{ $c->description }}
@@ -34,7 +48,7 @@
                                 @endcan
                             </div>
                         </div>
-                        <img src={{ "/img/background/" .  $c->image_thumbnail }} class="d-block w-100" alt="...">
+                        <img src={{ "/img/backgrounds/" .  $c->background_url }} class="d-block w-100" alt="...">
                     </div>
                 </div>  
             @endforeach
@@ -64,7 +78,7 @@
                     <a href="#">
                         <div class="card movie-card">
                             <div class="thumbnail-wrapper">
-                                <img class="rounded" src="{{ '/img/thumbnails/' . $p->image_thumbnail }}" alt="...">
+                                <img class="rounded" src="{{ '/img/thumbnails/' . $p->thumbnail_url }}" alt="...">
                             </div>
                             <div class="card-body">
                                 <p class="card-title text-light text-left">{{ $p->title }}</p>
@@ -181,7 +195,7 @@
                     <a href="#">
                         <div class="card movie-card">
                             <div class="thumbnail-wrapper">
-                                <img class="rounded" src="{{ '/img/thumbnails/' . $m->image_thumbnail }}" alt="...">
+                                <img class="rounded" src="{{ '/img/thumbnails/' . $m->thumbnail_url }}" alt="...">
                             </div>
                             <div class="card-body">
                                 <p class="card-title text-light text-left text-truncate">{{ $m->title }}</p>

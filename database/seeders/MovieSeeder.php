@@ -23,11 +23,10 @@ class MovieSeeder extends Seeder
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
             ',
 
-            'genre' => 'Action',
             'director' => 'Bayu',
             'release_date' => '2021',
-            'image_thumbnail' => 'matrix-resurrections.jpg',
-            'background' => 'matrix-resurrections.jpg'
+            'thumbnail_url' => 'matrix-resurrections.jpg',
+            'background_url' => 'matrix-resurrections.jpg'
         ]);
 
         Movie::create([
@@ -38,11 +37,10 @@ class MovieSeeder extends Seeder
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
             ',
             
-            'genre' => 'Superhero',
             'director' => 'Bayu',
             'release_date' => '2022',
-            'image_thumbnail' => 'black-adam.jpg',
-            'background' => 'black-adam.jpg'
+            'thumbnail_url' => 'black-adam.jpg',
+            'background_url' => 'black-adam.jpg'
         ]);
 
         Movie::create([
@@ -53,11 +51,10 @@ class MovieSeeder extends Seeder
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
             ',
             
-            'genre' => 'Horror',
             'director' => 'Bayu',
             'release_date' => '2018',
-            'image_thumbnail' => 'a-quiet-place.jpg',
-            'background' => 'a-quiet-place.jpg'
+            'thumbnail_url' => 'a-quiet-place.jpg',
+            'background_url' => 'a-quiet-place.jpg'
         ]);
 
         Movie::create([
@@ -68,11 +65,10 @@ class MovieSeeder extends Seeder
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
             ',
             
-            'genre' => 'Superhero',
             'director' => 'Bayu',
             'release_date' => '2019',
-            'image_thumbnail' => 'venom.jpg',
-            'background' => 'venom.jpg'
+            'thumbnail_url' => 'venom.jpg',
+            'background_url' => 'venom.jpg'
         ]);
 
         Movie::create([
@@ -83,11 +79,10 @@ class MovieSeeder extends Seeder
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
             ',
             
-            'genre' => 'Horror',
             'director' => 'Bayu',
             'release_date' => '2019',
-            'image_thumbnail' => 'the-banshees-of-iniherin.jpg',
-            'background' => 'te-banshees-of-iniherin.jpg'
+            'thumbnail_url' => 'the-banshees-of-iniherin.jpg',
+            'background_url' => 'the-banshees-of-iniherin.jpg'
         ]);
 
         Movie::create([
@@ -98,11 +93,10 @@ class MovieSeeder extends Seeder
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
             ',
             
-            'genre' => 'Drama',
             'director' => 'Bayu',
             'release_date' => '2019',
-            'image_thumbnail' => 'lou.jpg',
-            'background' => 'lou.jpg'
+            'thumbnail_url' => 'lou.jpg',
+            'background_url' => 'lou.jpg'
         ]);
 
         Movie::create([
@@ -113,11 +107,10 @@ class MovieSeeder extends Seeder
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
             ',
             
-            'genre' => 'Action',
             'director' => 'Bayu',
             'release_date' => '2019',
-            'image_thumbnail' => 'top-gun-maverick.jpg',
-            'background' => 'top-gun-maverick.jpg'
+            'thumbnail_url' => 'top-gun-maverick.jpg',
+            'background_url' => 'top-gun-maverick.jpg'
         ]);
 
         

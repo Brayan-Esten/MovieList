@@ -14,14 +14,17 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+
             $table->id();
             $table->string('username');
             $table->string('email')->unique();
             $table->string('password');
-            $table->date('dob')->nullable();
-            $table->string('phone')->nullable();
             $table->date('date_joined');
+            $table->date('dob')->default(date('Y-m-d', time()));
+            $table->string('phone')->default('');
+            $table->string('image_url')->default('default.jpg');
             $table->boolean('is_admin')->default(false);
+
 
             // do not touch
             $table->timestamp('email_verified_at')->nullable();
