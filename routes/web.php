@@ -16,14 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [LoginController::class, 'index']);
+// login
+
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
+
+// register
 
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 
 
+// movies
 
-Route::get('/', [MovieController::class, 'index']);
+Route::redirect('/', '/movies');
+Route::get('/movies', [MovieController::class, 'index'])->name('home');
+Route::resource('/movies', MovieController::class)->except(['index', 'show'])->middleware('admin');
+Route::get('/movies/{movie}', [MovieController::class, 'show']);

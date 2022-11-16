@@ -9,9 +9,7 @@ class LoginController extends Controller
 {
     // return login page
     public function index(){
-        return view('login', [
-            'title' => 'Log In'
-        ]);
+        return view('login');
     }
 
 

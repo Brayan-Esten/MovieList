@@ -5,8 +5,18 @@
     border: none;
 }
 
-.input-group input {
+.input-group input{
     width: 67%;
+    background-color: var(--grey);
+    color: #fff;
+    border: none;
+}
+
+.my-input input,
+.my-input textarea,
+.my-input select,
+.my-input option{
+    width: 100%;
     background-color: var(--grey);
     color: #fff;
     border: none;
@@ -24,4 +34,22 @@
 
 .my-button:not(:disabled):not(:disabled):active{
     background-color: var(--red);
+}
+
+.dropdown-menu{
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.actor-input{
+    width: 45%;
+}
+
+.character-input{
+    width: 45%;
+}
+
+#addCharBtn, #delCharBtn{
+    width: 20%;
+    margin: 0 .5em;
 }
