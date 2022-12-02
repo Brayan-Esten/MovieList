@@ -22,16 +22,6 @@
     border: none;
 }
 
-.btn,
-.btn:hover {
-    border: none;
-}
-
-.btn-primary,
-.btn-primary:hover {
-    background-color: var(--red);
-}
-
 .my-button:not(:disabled):not(:disabled):active{
     background-color: var(--red);
 }

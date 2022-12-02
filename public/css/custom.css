@@ -47,6 +47,16 @@ img{
     max-height: 100%;
 }
 
+.btn,
+.btn:hover {
+    border: none;
+}
+
+.btn-primary,
+.btn-primary:hover {
+    background-color: var(--red);
+}
+
 .section-header {
     width: 99%;
     margin: auto;

@@ -14,14 +14,15 @@
                         </h4>
                     </div>
 
-                    <form class="mt-4" action="/movies" method="post">
+                    <form class="mt-4" action="/movies" method="post" enctype="multipart/form-data">
                         @csrf
 
                         {{-- title --}}
                         <div class="my-input mb-3 has-validation">
 
                             <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" name="title">
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}"
+                            id="title" name="title">
 
                             @error('title')
                                 <div class="invalid-feedback">
@@ -36,7 +37,8 @@
                         <div class="my-input mb-3 has-validation">
 
                             <label for="description" class="form-label">Description</label>
-                            <textarea type="text" class="form-control" id="description" name="description"></textarea>
+                            <textarea type="text" class="form-control @error('description') is-invalid @enderror" 
+                            id="description" name="description">{{ old('description') }}</textarea>
 
                             @error('description')
                                 <div class="invalid-feedback">
@@ -54,7 +56,8 @@
 
                             <div class="dropdown">
 
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle @error('genres') is-invalid @enderror" 
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     -- Select these options --
                                 </button>
 
@@ -69,7 +72,14 @@
                                     @endforeach
                                 </ul>
 
+                                @error('genres')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
                             </div>
+
                             
                         </div>
 
@@ -82,17 +92,32 @@
                                 
                                 <div class="actor-input">
                                     <label class="form-label">Actor</label>
-                                    <select class="form-select" aria-label="Default select example" name="actors[]">
-                                        <option selected>-- Open this select menu --</option>
-                                        @foreach($genres as $g)
-                                            <option value="{{ $g->id }}">{{ $g->type }}</option>
+                                    <select class="form-select @error('actors.*') is-invalid @enderror"
+                                    name="actors[]">
+                                        <option value="">-- Open this select menu --</option>
+                                        @foreach($actors as $a)
+                                            <option value="{{ $a->id }}">{{ $a->name }}</option>
                                         @endforeach
                                     </select>
+
+                                    @error('actors.*')
+                                        <div class="invalid-feedback">
+                                            Please select one of the actors/actresses
+                                        </div>
+                                    @enderror
                                 </div>
     
                                 <div class="character-input">
                                     <label class="form-label">Character Name</label>
-                                    <input type="text" class="form-control" name="characters[]">
+                                    <input type="text" class="form-control @error('characters.*') is-invalid @enderror"
+                                    value="{{ old('characters.*') }}"
+                                    name="characters[]">
+
+                                    @error('characters.*')
+                                        <div class="invalid-feedback">
+                                            {{ 'The character name must be filled' }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                             </div>
@@ -118,7 +143,9 @@
                         <div class="my-input mb-3 has-validation">
 
                             <label for="director" class="form-label">Director</label>
-                            <input type="text" class="form-control" id="director" name="director">
+                            <input type="text" class="form-control @error('director') is-invalid @enderror" 
+                            value="{{ old('director') }}"
+                            id="director" name="director">
 
                             @error('director')
                                 <div class="invalid-feedback">
@@ -133,7 +160,9 @@
                         <div class="my-input mb-3 has-validation">
 
                             <label for="release_date" class="form-label">Release Date</label>
-                            <input type="date" class="form-control" id="release_date" name="release_date">
+                            <input type="date" class="form-control @error('release_date') is-invalid @enderror" 
+                            value="{{ old('release_date') }}"
+                            id="release_date" name="release_date">
 
                             @error('release_date')
                                 <div class="invalid-feedback">
@@ -147,7 +176,8 @@
                         {{-- thumbnail_url --}}
                         <div class="my-input mb-3 has-validation">
                             <label for="thubnail_url" class="form-label">Thumbnail</label>
-                            <input type="file" class="form-control" id="thumbnail_url" name="thumbnail_url">
+                            <input type="file" class="form-control @error('thumbnail_url') is-invalid @enderror" 
+                            id="thumbnail_url" name="thumbnail_url">
 
                             @error('thumbnail_url')
                                 <div class="invalid-feedback">
@@ -159,8 +189,9 @@
 
                         {{-- background_url --}}
                         <div class="my-input mb-3 has-validation">
-                            <label for="thubnail_url" class="form-label">Thumbnail</label>
-                            <input type="file" class="form-control" id="background_url" name="background_url">
+                            <label for="thubnail_url" class="form-label">Background</label>
+                            <input type="file" class="form-control @error('background_url') is-invalid @enderror" 
+                            id="background_url" name="background_url">
 
                             @error('background_url')
                                 <div class="invalid-feedback">
@@ -195,8 +226,8 @@
                     <label class="form-label">Actor</label>
                     <select class="form-select" aria-label="Default select example" name="actors[]">
                         <option selected>-- Open this select menu --</option>
-                        @foreach($genres as $g)
-                            <option value="{{ $g->id }}">{{ $g->type }}</option>
+                        @foreach($actors as $a)
+                            <option value="{{ $a->id }}">{{ $a->name }}</option>
                         @endforeach
                     </select>
                 </div>
