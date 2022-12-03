@@ -10,6 +10,7 @@ class Character extends Pivot
 {
     use HasFactory;
 
+    protected $table = 'characters';
     protected $guarded = ['id'];
     public $incrementing = true;
 }

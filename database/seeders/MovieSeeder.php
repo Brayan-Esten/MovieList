@@ -25,8 +25,8 @@ class MovieSeeder extends Seeder
 
             'director' => 'Bayu',
             'release_date' => '2021',
-            'thumbnail_url' => 'matrix-resurrections.jpg',
-            'background_url' => 'matrix-resurrections.jpg'
+            'thumbnail_url' => 'img/thumbnails/matrix-resurrections.jpg',
+            'background_url' => 'img/backgrounds/matrix-resurrections.jpg'
         ]);
 
         Movie::create([
@@ -39,8 +39,8 @@ class MovieSeeder extends Seeder
             
             'director' => 'Bayu',
             'release_date' => '2022',
-            'thumbnail_url' => 'black-adam.jpg',
-            'background_url' => 'black-adam.jpg'
+            'thumbnail_url' => 'img/thumbnails/black-adam.jpg',
+            'background_url' => 'img/backgrounds/black-adam.jpg'
         ]);
 
         Movie::create([
@@ -53,8 +53,8 @@ class MovieSeeder extends Seeder
             
             'director' => 'Bayu',
             'release_date' => '2018',
-            'thumbnail_url' => 'a-quiet-place.jpg',
-            'background_url' => 'a-quiet-place.jpg'
+            'thumbnail_url' => 'img/thumbnails/a-quiet-place.jpg',
+            'background_url' => 'img/backgrounds/a-quiet-place.jpg'
         ]);
 
         Movie::create([
@@ -67,8 +67,8 @@ class MovieSeeder extends Seeder
             
             'director' => 'Bayu',
             'release_date' => '2019',
-            'thumbnail_url' => 'venom.jpg',
-            'background_url' => 'venom.jpg'
+            'thumbnail_url' => 'img/thumbnails/venom.jpg',
+            'background_url' => 'img/backgrounds/venom.jpg'
         ]);
 
         Movie::create([
@@ -81,8 +81,8 @@ class MovieSeeder extends Seeder
             
             'director' => 'Bayu',
             'release_date' => '2019',
-            'thumbnail_url' => 'the-banshees-of-iniherin.jpg',
-            'background_url' => 'the-banshees-of-iniherin.jpg'
+            'thumbnail_url' => 'img/thumbnails/the-banshees-of-iniherin.jpg',
+            'background_url' => 'img/backgrounds/the-banshees-of-iniherin.jpg'
         ]);
 
         Movie::create([
@@ -95,8 +95,8 @@ class MovieSeeder extends Seeder
             
             'director' => 'Bayu',
             'release_date' => '2019',
-            'thumbnail_url' => 'lou.jpg',
-            'background_url' => 'lou.jpg'
+            'thumbnail_url' => 'img/thumbnails/lou.jpg',
+            'background_url' => 'img/backgrounds/lou.jpg'
         ]);
 
         Movie::create([
@@ -109,8 +109,8 @@ class MovieSeeder extends Seeder
             
             'director' => 'Bayu',
             'release_date' => '2019',
-            'thumbnail_url' => 'top-gun-maverick.jpg',
-            'background_url' => 'top-gun-maverick.jpg'
+            'thumbnail_url' => 'img/thumbnails/top-gun-maverick.jpg',
+            'background_url' => 'img/backgrounds/top-gun-maverick.jpg'
         ]);
 
         

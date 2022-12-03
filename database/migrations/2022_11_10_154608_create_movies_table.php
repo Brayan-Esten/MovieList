@@ -20,11 +20,10 @@ class CreateMoviesTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('director');
-            $table->integer('release_date');
+            $table->unsignedSmallInteger('release_date');
             $table->string('thumbnail_url');
             $table->string('background_url');
 
-            
             $table->timestamps();
 
         });

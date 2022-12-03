@@ -2,6 +2,13 @@
 
 @section('content')
 
+    @if(session()->has('add_movie_success'))
+        <div class="alert alert-success alert-dismissible fade show w-25 m-auto" role="alert">
+            {{ session('add_movie_success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     {{-- hero section --}}
 
     <div id="hero" class="carousel slide" data-bs-ride="carousel">
@@ -48,7 +55,7 @@
                                 @endcan
                             </div>
                         </div>
-                        <img src="{{ asset('/storage/img/backgrounds/' .  $c->background_url) }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('storage/' .  $c->background_url) }}" class="d-block w-100" alt="...">
                     </div>
                 </div>  
             @endforeach
@@ -78,7 +85,7 @@
                     <a href="#">
                         <div class="card movie-card">
                             <div class="thumbnail-wrapper">
-                                <img class="rounded" src="{{ asset('/storage/img/thumbnails/' . $p->thumbnail_url) }}" alt="...">
+                                <img class="rounded" src="{{ asset('storage/' . $p->thumbnail_url) }}" alt="...">
                             </div>
                             <div class="card-body">
                                 <p class="card-title text-light text-left">{{ $p->title }}</p>
@@ -195,7 +202,7 @@
                     <a href="#">
                         <div class="card movie-card">
                             <div class="thumbnail-wrapper">
-                                <img class="rounded" src="{{ asset('/storage/img/thumbnails/' . $m->thumbnail_url) }}" alt="...">
+                                <img class="rounded" src="{{ asset('storage/' . $m->thumbnail_url) }}" alt="...">
                             </div>
                             <div class="card-body">
                                 <p class="card-title text-light text-left text-truncate">{{ $m->title }}</p>

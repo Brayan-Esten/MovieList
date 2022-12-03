@@ -25,7 +25,7 @@ class MovieController extends Controller
 
         $genres = Genre::all();
 
-        $carousels = $movies->slice(rand(0, $movies->count() - 4), 3);
+        $carousels = $movies->random(3);
 
         $populars = $movies->sortByDesc('release_date');
 
@@ -79,26 +79,27 @@ class MovieController extends Controller
 
         // dd($request->release_date);
 
+        $date = date('Y-m-d', strtotime($request->release_date));
+        $release_date = explode('-', $date);
+
         Movie::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'director' => $request->director,
-            'release_date' => $request->release_date->format('y'),
-            'thumbnail_url' => $request->thumbnail_url,
-            'background_url' => $request->background_url
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'director' => $validated['director'],
+            'release_date' => $release_date[0],
+            'thumbnail_url' => $validated['thumbnail_url'],
+            'background_url' => $validated['background_url']
         ]);
 
-        $new_movie_id = Movie::latest()->first()->get('id');
-
-        dd($new_movie_id);
+        $latest_movie = Movie::latest()->first();
 
         $genres_size = sizeof($request->genres);
 
         for($i = 0; $i < $genres_size; $i++){
 
             GenreMovie::create([
-                'movie_id' => $new_movie_id,
-                'genre_id' => $request->genres[$i]
+                'movie_id' => $latest_movie->id,
+                'genre_id' => $validated['genres'][$i]
             ]);
 
         }
@@ -108,14 +109,14 @@ class MovieController extends Controller
         for($i = 0; $i < $actors_size; $i++){
             
             Character::create([
-                'movie_id' => $new_movie_id,
-                'actor_id' => $request->actors[$i],
-                'character_id' => $request->characters[$i]
+                'movie_id' => $latest_movie->id,
+                'actor_id' => $validated['actors'][$i],
+                'name' => $validated['characters'][$i]
             ]);
 
         }
 
-
+        return redirect('/movies')->with('add_movie_success', 'New movie added!');
     }
 
     /**
