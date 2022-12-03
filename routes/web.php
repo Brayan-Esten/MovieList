@@ -34,4 +34,4 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::redirect('/', '/movies');
 Route::get('/movies', [MovieController::class, 'index'])->name('home');
 Route::resource('/movies', MovieController::class)->except(['index', 'show'])->middleware('admin');
-Route::get('/movies/{movie}', [MovieController::class, 'show']);
+Route::get('/movies/{movie:id}', [MovieController::class, 'show']);

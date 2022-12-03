@@ -1,5 +1,6 @@
 #hero .carousel-item{
     height: 500px;
+    overflow: hidden;
 }
 
 #hero .carousel-item img{

@@ -82,11 +82,9 @@
     
                 @foreach($populars as $p)
                 <div class="carousel-item @if($loop->first) active @endif">
-                    <a href="#">
+                    <a href="/movies/{{ $p->id }}">
                         <div class="card movie-card">
-                            <div class="thumbnail-wrapper">
-                                <img class="rounded" src="{{ asset('storage/' . $p->thumbnail_url) }}" alt="...">
-                            </div>
+                            <img class="img-thumbnail movie-thumbnail" src="{{ asset('storage/' . $p->thumbnail_url) }}" alt="...">
                             <div class="card-body">
                                 <p class="card-title text-light text-left">{{ $p->title }}</p>
                                 <small class="card-text text-muted">{{ $p->release_date }}</small>
@@ -199,11 +197,9 @@
     
                 @foreach($movies as $m)
                 <div class="carousel-item @if($loop->first) active @endif">
-                    <a href="#">
+                    <a href="/movies/{{ $m->id }}">
                         <div class="card movie-card">
-                            <div class="thumbnail-wrapper">
-                                <img class="rounded" src="{{ asset('storage/' . $m->thumbnail_url) }}" alt="...">
-                            </div>
+                            <img class="img-thumbnail movie-thumbnail" src="{{ asset('storage/' . $m->thumbnail_url) }}" alt="...">
                             <div class="card-body">
                                 <p class="card-title text-light text-left text-truncate">{{ $m->title }}</p>
                                 <div class="d-flex justify-content-between">

@@ -32,7 +32,7 @@ class ActorSeeder extends Seeder
 
             'dob' => '1983-02-23',
             'pob' => 'Roehampton, London, England, UK',
-            'image_url' => 'emily-blunt.jpg',
+            'image_url' => 'img/actors/emily-blunt.jpg',
             'popularity' => rand(0, 100)
 
         ]);
@@ -54,7 +54,7 @@ class ActorSeeder extends Seeder
 
             'dob' => '1979-10-20',
             'pob' => 'Newton, Massachusetts, USA',
-            'image_url' => 'john-krasinski.jpg',
+            'image_url' => 'img/actors/john-krasinski.jpg',
             'popularity' => rand(0, 100)
 
         ]);
@@ -75,7 +75,7 @@ class ActorSeeder extends Seeder
             
             'dob' => '2003-03-06',
             'pob' => 'Bountiful, Utah, USA',
-            'image_url' => 'millicent-simmonds.jpg',
+            'image_url' => 'img/actors/millicent-simmonds.jpg',
             'popularity' => 0
 
         ]);
@@ -98,7 +98,7 @@ class ActorSeeder extends Seeder
             
             'dob' => '1976-05-31',
             'pob' => 'Castleknock, Dublin, Ireland',
-            'image_url' => 'colin-farrell.jpg',
+            'image_url' => 'img/actors/colin-farrell.jpg',
             'popularity' => 0
 
         ]);
@@ -113,7 +113,7 @@ class ActorSeeder extends Seeder
             
             'dob' => '1955-03-29',
             'pob' => 'Dublin, Ireland',
-            'image_url' => 'brendan-gleeson.jpg',
+            'image_url' => 'img/actors/brendan-gleeson.jpg',
             'popularity' => 0
 
         ]);
@@ -128,7 +128,7 @@ class ActorSeeder extends Seeder
             
             'dob' => '1977-09-15',
             'pob' => 'Hammersmith, London, England, UK',
-            'image_url' => 'tom-hardy.jpg',
+            'image_url' => 'img/actors/tom-hardy.jpg',
             'popularity' => 0
 
         ]);
@@ -143,7 +143,7 @@ class ActorSeeder extends Seeder
             
             'dob' => '1980-09-09',
             'pob' => 'Kalispell, Montana, USA',
-            'image_url' => 'michelle-williams.jpg',
+            'image_url' => 'img/actors/michelle-williams.jpg',
             'popularity' => 0
 
         ]);
@@ -158,7 +158,7 @@ class ActorSeeder extends Seeder
             
             'dob' => '1982-12-01',
             'pob' => 'London, England, UK',
-            'image_url' => 'riz-ahmed.jpg',
+            'image_url' => 'img/actors/riz-ahmed.jpg',
             'popularity' => 0
 
         ]);
@@ -173,7 +173,7 @@ class ActorSeeder extends Seeder
             
             'dob' => '1961-06-23',
             'pob' => 'Midland, Texas, USA',
-            'image_url' => 'woody-harrelson.jpg',
+            'image_url' => 'img/actors/woody-harrelson.jpg',
             'popularity' => 0
 
         ]);
@@ -188,7 +188,7 @@ class ActorSeeder extends Seeder
             
             'dob' => '1962-06-03',
             'pob' => 'Syracuse, New York, USA',
-            'image_url' => 'tom-cruise.jpg',
+            'image_url' => 'img/actors/tom-cruise.jpg',
             'popularity' => 0
 
         ]);
