@@ -18,10 +18,7 @@ class MovieSeeder extends Seeder
         Movie::create([
             'title' => 'The Matrix : Resurrections',
 
-            'description' => 
-            '
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
-            ',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
 
             'director' => 'Bayu',
             'release_date' => '2021',
@@ -32,10 +29,7 @@ class MovieSeeder extends Seeder
         Movie::create([
             'title' => 'Black Adam',
 
-            'description' => 
-            '
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
-            ',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
             
             'director' => 'Bayu',
             'release_date' => '2022',
@@ -46,10 +40,7 @@ class MovieSeeder extends Seeder
         Movie::create([
             'title' => 'A Quiet Place',
 
-            'description' => 
-            '
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
-            ',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
             
             'director' => 'Bayu',
             'release_date' => '2018',
@@ -60,10 +51,7 @@ class MovieSeeder extends Seeder
         Movie::create([
             'title' => 'Venom',
 
-            'description' => 
-            '
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
-            ',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
             
             'director' => 'Bayu',
             'release_date' => '2019',
@@ -74,10 +62,7 @@ class MovieSeeder extends Seeder
         Movie::create([
             'title' => 'The Banshees of Iniherin',
 
-            'description' => 
-            '
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
-            ',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
             
             'director' => 'Bayu',
             'release_date' => '2019',
@@ -88,10 +73,7 @@ class MovieSeeder extends Seeder
         Movie::create([
             'title' => 'Lou',
 
-            'description' => 
-            '
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
-            ',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
             
             'director' => 'Bayu',
             'release_date' => '2019',
@@ -102,10 +84,7 @@ class MovieSeeder extends Seeder
         Movie::create([
             'title' => 'Top Gun Maverick',
 
-            'description' => 
-            '
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?
-            ',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
             
             'director' => 'Bayu',
             'release_date' => '2019',

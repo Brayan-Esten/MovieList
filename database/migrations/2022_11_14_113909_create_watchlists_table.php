@@ -27,7 +27,7 @@ class CreateWatchlistsTable extends Migration
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
 
-            $table->string('status');
+            $table->string('status')->default('Planned');
 
             $table->timestamps();
 

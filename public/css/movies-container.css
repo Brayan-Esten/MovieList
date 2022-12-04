@@ -11,6 +11,21 @@
     margin: 0 1em;
 }
 
+.carousel-control-prev,
+.carousel-control-next{
+    opacity: 1 !important;
+}
+
+.carousel button span i{
+    font-size: 3rem; 
+    color: var(--red);
+}
+
+.carousel button span i::before{
+    background-color: var(--white);
+    border-radius: 10px;
+}
+
 .card{
     background-color: rgba(0,0,0,0);
     border: none;

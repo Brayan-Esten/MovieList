@@ -46,6 +46,11 @@ class GenreMovieSeeder extends Seeder
         ]);
 
         GenreMovie::create([
+            'movie_id' => 4,
+            'genre_id' => 8
+        ]);
+
+        GenreMovie::create([
             'movie_id' => 5,
             'genre_id' => 2
         ]);

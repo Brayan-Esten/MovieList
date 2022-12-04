@@ -9,6 +9,7 @@ class Movie extends Model
 {
     use HasFactory;
     
+    protected $table = 'movies';
     protected $guarded = ['id'];
 
     public function genres(){
@@ -17,5 +18,9 @@ class Movie extends Model
 
     public function actors(){
         return $this->belongsToMany(Actor::class)->using(Character::class);
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class)->using(Watchlist::class);
     }
 }

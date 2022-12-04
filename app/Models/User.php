@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
+    protected $table = 'users';
     protected $guarded = ['id'];
 
     /**
@@ -38,4 +39,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function movies(){
+        return $this->belongsToMany(Movie::class)->using(Watchlist::class);
+    }
+
 }

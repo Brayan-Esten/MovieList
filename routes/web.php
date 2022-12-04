@@ -35,3 +35,9 @@ Route::redirect('/', '/movies');
 Route::get('/movies', [MovieController::class, 'index'])->name('home');
 Route::resource('/movies', MovieController::class)->except(['index', 'show'])->middleware('admin');
 Route::get('/movies/{movie:id}', [MovieController::class, 'show']);
+
+
+// watchlist
+
+Route::get('/watchlist/add/{movie:id}', [MovieController::class, 'addToWatchlist']);
+Route::get('/watchlist/remove/{movie:id}', [MovieController::class, 'removeFromWatchlist']);

@@ -8,6 +8,8 @@ use App\Models\Genre;
 use App\Models\Actor;
 use App\Models\Character;
 use App\Models\GenreMovie;
+use App\Models\Watchlist;
+use Illuminate\Auth\Middleware\Authorize;
 
 class MovieController extends Controller
 {
@@ -16,18 +18,52 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function addToWatchlist(Movie $movie){
+        Watchlist::create([
+            'user_id' => auth()->user()->id,
+            'movie_id' => $movie->id
+        ]);
+
+        return redirect('/movies')->with('add_to_watchlist_success', 'Movie added to watchlist!');
+    }
+
+    public function removeFromWatchlist(Movie $movie){
+        Watchlist::where('user_id', '=', auth()->user()->id)
+                    ->where('movie_id', '=', $movie->id)
+                    ->delete();
+        
+        return redirect('/movies')->with('remove_from_watchlist_success', 'Movie removed from watchlist!!');
+    }
+
     public function index()
     {
 
         $movies = Movie::with('genres')->get();
 
-        // dd($movies);
+        $temp = null;
+        $watchlist = collect();
+
+        if(auth()->user()){
+            $temp =  Watchlist::select('movie_id')
+                                ->where('user_id', '=', auth()->user()->id)
+                                ->get();
+
+            foreach($temp as $t){
+                $watchlist->push($t->movie_id);
+            }
+            
+        } 
 
         $genres = Genre::all();
 
         $carousels = $movies->random(3);
 
         $populars = $movies->sortByDesc('release_date');
+
+        if(auth()->user()){
+            return view('movies.index', compact('movies', 'watchlist', 'carousels', 'populars', 'genres'));
+        }
 
         return view('movies.index', compact('movies', 'carousels', 'populars', 'genres'));
     }
@@ -76,8 +112,6 @@ class MovieController extends Controller
         if($request->file('background_url')){
             $validated['background_url'] = $request->file('background_url')->store('img/backgrounds');
         }
-
-        // dd($request->release_date);
 
         $date = date('Y-m-d', strtotime($request->release_date));
         $release_date = explode('-', $date);
@@ -128,7 +162,29 @@ class MovieController extends Controller
     public function show(Movie $movie)
     {
         //
-        return view('movies.show', compact('movie'));
+        $casts = Character::with('actor')
+                    ->where('movie_id', '=', $movie->id)->get();
+
+        $movies = Movie::all();
+
+        $temp = null;
+        $watchlist = collect();
+
+        if(auth()->user()){
+            $temp =  Watchlist::select('movie_id')
+                                ->where('user_id', '=', auth()->user()->id)
+                                ->get();
+
+            foreach($temp as $t){
+                $watchlist->push($t->movie_id);
+            }  
+        }
+
+        if(auth()->user()){
+            return view('movies.show', compact('movie', 'casts', 'movies', 'watchlist'));
+        }
+
+        return view('movies.show', compact('movie', 'casts', 'movies'));
     }
 
     /**
@@ -137,9 +193,15 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Movie $movie)
     {
         //
+        $genres = Genre::all();
+        $actors = Actor::all();
+        $genre_movie = GenreMovie::where('movie_id', '=', $movie->id);
+        $characters = Character::where('movie_id', '=', $movie->id);
+
+        return view('movies.edit', compact('movie', 'genres', 'actors', 'genre_movie', 'characters'));
     }
 
     /**

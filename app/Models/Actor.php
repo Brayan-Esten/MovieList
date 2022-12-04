@@ -10,6 +10,7 @@ class Actor extends Model
 {
     use HasFactory;
 
+    protected $table = 'actors';
     protected $guarded = ['id'];
 
     public function movies(){

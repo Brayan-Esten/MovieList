@@ -82,28 +82,36 @@
     
                 @foreach($populars as $p)
                 <div class="carousel-item @if($loop->first) active @endif">
-                    <a href="/movies/{{ $p->id }}">
-                        <div class="card movie-card">
+                    <div class="card">
+                        <a href="/movies/{{ $p->id }}">
                             <img class="img-thumbnail movie-thumbnail" src="{{ asset('storage/' . $p->thumbnail_url) }}" alt="...">
-                            <div class="card-body">
-                                <p class="card-title text-light text-left">{{ $p->title }}</p>
+                        </a>
+                        <div class="card-body">
+                            <p class="card-title text-light text-left">{{ $p->title }}</p>
+                            <div class="d-flex justify-content-between">
                                 <small class="card-text text-muted">{{ $p->release_date }}</small>
+                                @can('user')
+                                @if ($watchlist->contains($p->id))
+                                    <i class="bi bi-check text-muted" style="font-size: 1.2rem"></i>
+                                @else
+                                    <a href="/watchlist/add/{{ $p->id }}" style="font-size: 1.2rem">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </a>
+                                @endif
+                                @endcan
                             </div>
                         </div>
-    
-                    </a>
+                    </div>
                 </div>
                 @endforeach
     
             </div>
             
             <button class="carousel-control-prev" type="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                <span><i class="bi bi-arrow-left-square-fill"></i></span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                <span><i class="bi bi-arrow-right-square-fill"></i></span>
             </button>
     
         </div>
@@ -197,34 +205,37 @@
     
                 @foreach($movies as $m)
                 <div class="carousel-item @if($loop->first) active @endif">
-                    <a href="/movies/{{ $m->id }}">
-                        <div class="card movie-card">
+                    <div class="card">
+                        <a href="/movies/{{ $m->id }}">
                             <img class="img-thumbnail movie-thumbnail" src="{{ asset('storage/' . $m->thumbnail_url) }}" alt="...">
-                            <div class="card-body">
-                                <p class="card-title text-light text-left text-truncate">{{ $m->title }}</p>
-                                <div class="d-flex justify-content-between">
-                                    <small class="card-text text-muted">{{ $m->release_date }}</small>
-                                    @can('user')
-                                        <a href="" class="text-muted" style="font-size: 1.2rem">
-                                            +
-                                        </a>
-                                    @endcan
-                                </div>
+                        </a>
+                        <div class="card-body">
+                            <p class="card-title text-light text-left text-truncate">{{ $m->title }}</p>
+                            <div class="d-flex justify-content-between">
+                                <small class="card-text text-muted">{{ $m->release_date }}</small>
+                                @can('user')
+                                @if ($watchlist->contains($m->id))
+                                    <i class="bi bi-check text-muted" style="font-size: 1.2rem"></i>
+                                @else
+                                    <a href="/watchlist/add/{{ $m->id }}" 
+                                    class="text-muted" style="font-size: 1.2rem">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </a>
+                                @endif
+                                @endcan
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
                 @endforeach
     
             </div>
             
             <button class="carousel-control-prev" type="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                <span><i class="bi bi-arrow-left-square-fill"></i></span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                <span><i class="bi bi-arrow-right-square-fill"></i></span>
             </button>
     
         </div>
@@ -233,9 +244,10 @@
     </div>
 
 
-    <script>
+    {{-- jQuery --}}
+    <script src="/js/jquery-3.6.1.min.js"></script>
 
-
-    </script>
+    {{-- custom js --}}
+    <script src="/js/custom.js"></script>
 
 @endsection
