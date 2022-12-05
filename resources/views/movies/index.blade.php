@@ -3,8 +3,22 @@
 @section('content')
 
     @if(session()->has('add_movie_success'))
-        <div class="alert alert-success alert-dismissible fade show w-25 m-auto" role="alert">
+        <div class="alert alert-success alert-dismissible fade show w-50 m-auto" role="alert">
             {{ session('add_movie_success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if(session()->has('del_movie_success'))
+        <div class="alert alert-success alert-dismissible fade show w-50 m-auto" role="alert">
+            {{ session('del_movie_success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if(session()->has('add_to_watchlist_success'))
+        <div class="alert alert-success alert-dismissible fade show w-50 m-auto" role="alert">
+            {{ session('add_to_watchlist_success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
@@ -89,14 +103,19 @@
                         <div class="card-body">
                             <p class="card-title text-light text-left">{{ $p->title }}</p>
                             <div class="d-flex justify-content-between">
-                                <small class="card-text text-muted">{{ $p->release_date }}</small>
+                                <small class="card-text text-muted">{{ date('Y', strtotime($p->release_date)) }}</small>
                                 @can('user')
                                 @if ($watchlist->contains($p->id))
                                     <i class="bi bi-check text-muted" style="font-size: 1.2rem"></i>
                                 @else
-                                    <a href="/watchlist/add/{{ $p->id }}" style="font-size: 1.2rem">
-                                        <i class="bi bi-plus-lg"></i>
-                                    </a>
+                                    <form class="d-inline" action="/watchlists" method="post">
+                                        @csrf
+                                        <input type="hidden" name="movie_id" value="{{ $p->id }}">
+                                        <input type="hidden" name="movie_title" value="{{ $p->title }}">
+                                        <button style="font-size: 1.2rem; border: none; background: transparent">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </button>
+                                    </form>
                                 @endif
                                 @endcan
                             </div>
@@ -217,10 +236,14 @@
                                 @if ($watchlist->contains($m->id))
                                     <i class="bi bi-check text-muted" style="font-size: 1.2rem"></i>
                                 @else
-                                    <a href="/watchlist/add/{{ $m->id }}" 
-                                    class="text-muted" style="font-size: 1.2rem">
-                                        <i class="bi bi-plus-lg"></i>
-                                    </a>
+                                    <form class="d-inline" action="/watchlists" method="post">
+                                        @csrf
+                                        <input type="hidden" name="movie_id" value="{{ $m->id }}">
+                                        <input type="hidden" name="movie_title" value="{{ $m->title }}">
+                                        <button style="font-size: 1.2rem; border: none; background: transparent">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </button>
+                                    </form>
                                 @endif
                                 @endcan
                             </div>

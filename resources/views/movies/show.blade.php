@@ -118,9 +118,14 @@
                                 @if ($watchlist->contains($m->id))
                                     <i class="bi bi-check text-muted" style="font-size: 1.2rem"></i>
                                 @else
-                                    <a href="/watchlist/add/{{ $m->id }}" style="font-size: 1.2rem">
-                                        <i class="bi bi-plus-lg"></i>
-                                    </a>
+                                    <form class="d-inline" action="/watchlists" method="post">
+                                        @csrf
+                                        <input type="hidden" name="movie_id" value="{{ $m->id }}">
+                                        <input type="hidden" name="movie_title" value="{{ $m->title }}">
+                                        <button style="font-size: 1.2rem; border: none; background: transparent">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </button>
+                                    </form>
                                 @endif
                                 @endcan
                             </div>

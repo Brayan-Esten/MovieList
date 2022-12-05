@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\WatchlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,5 +40,4 @@ Route::get('/movies/{movie:id}', [MovieController::class, 'show']);
 
 // watchlist
 
-Route::get('/watchlist/add/{movie:id}', [MovieController::class, 'addToWatchlist']);
-Route::get('/watchlist/remove/{movie:id}', [MovieController::class, 'removeFromWatchlist']);
+Route::resource('/watchlists', WatchlistController::class)->only(['store', 'destroy'])->middleware('auth'); 

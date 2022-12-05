@@ -39,3 +39,13 @@
 .card-body{
     padding: .1em;
 }
+
+button .bi-plus-lg{
+    color: #bbb;
+    cursor: pointer;
+    transition: .6s;
+}
+
+button .bi-plus-lg:hover{
+    color: #fff;
+}

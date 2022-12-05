@@ -24,7 +24,7 @@
                             <label for="title" class="form-label">Title</label>
                             <input type="text" class="form-control @error('title') is-invalid @enderror"
                             id="title" name="title"
-                            value="{{ $movie->title }}">
+                            value="{{ old('title', $movie->title) }}">
 
                             @error('title')
                                 <div class="invalid-feedback">
@@ -148,7 +148,7 @@
 
                             <label for="director" class="form-label">Director</label>
                             <input type="text" class="form-control @error('director') is-invalid @enderror" 
-                            value="{{ $movie->director }}"
+                            value="{{ old('director', $movie->director) }}"
                             id="director" name="director">
 
                             @error('director')
@@ -165,7 +165,7 @@
 
                             <label for="release_date" class="form-label">Release Date</label>
                             <input type="date" class="form-control @error('release_date') is-invalid @enderror" 
-                            value="{{ $movie->release_date }}"
+                            value="{{ date('Y-m-d', strtotime($movie->release_date)) }}"
                             id="release_date" name="release_date">
 
                             @error('release_date')

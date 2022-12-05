@@ -10,6 +10,7 @@ use App\Models\Character;
 use App\Models\GenreMovie;
 use App\Models\Watchlist;
 use Illuminate\Auth\Middleware\Authorize;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -18,23 +19,6 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function addToWatchlist(Movie $movie){
-        Watchlist::create([
-            'user_id' => auth()->user()->id,
-            'movie_id' => $movie->id
-        ]);
-
-        return redirect('/movies')->with('add_to_watchlist_success', 'Movie added to watchlist!');
-    }
-
-    public function removeFromWatchlist(Movie $movie){
-        Watchlist::where('user_id', '=', auth()->user()->id)
-                    ->where('movie_id', '=', $movie->id)
-                    ->delete();
-        
-        return redirect('/movies')->with('remove_from_watchlist_success', 'Movie removed from watchlist!!');
-    }
 
     public function index()
     {
@@ -163,7 +147,7 @@ class MovieController extends Controller
     {
         //
         $casts = Character::with('actor')
-                    ->where('movie_id', '=', $movie->id)->get();
+                    ->where('movie_id', $movie->id)->get();
 
         $movies = Movie::all();
 
@@ -198,8 +182,8 @@ class MovieController extends Controller
         //
         $genres = Genre::all();
         $actors = Actor::all();
-        $genre_movie = GenreMovie::where('movie_id', '=', $movie->id);
-        $characters = Character::where('movie_id', '=', $movie->id);
+        $genre_movie = GenreMovie::where('movie_id', $movie->id);
+        $characters = Character::where('movie_id', $movie->id);
 
         return view('movies.edit', compact('movie', 'genres', 'actors', 'genre_movie', 'characters'));
     }
@@ -214,6 +198,7 @@ class MovieController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**
@@ -222,8 +207,19 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Movie $movie)
     {
         //
+        Movie::destroy($movie->id);
+
+        // if($movie->thumbnail_url){
+        //     Storage::delete($movie->thumbnail_url);
+        // }
+
+        // if($movie->background_url){
+        //     Storage::delete($movie->bakground_url);
+        // }
+
+        return redirect('/movies')->with('del_movie_success', $movie->title . ' has been removed!');
     }
 }

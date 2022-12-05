@@ -21,7 +21,7 @@ class MovieSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
 
             'director' => 'Bayu',
-            'release_date' => '2021',
+            'release_date' => '2021-01-01',
             'thumbnail_url' => 'img/thumbnails/matrix-resurrections.jpg',
             'background_url' => 'img/backgrounds/matrix-resurrections.jpg'
         ]);
@@ -32,7 +32,7 @@ class MovieSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
             
             'director' => 'Bayu',
-            'release_date' => '2022',
+            'release_date' => '2022-01-01',
             'thumbnail_url' => 'img/thumbnails/black-adam.jpg',
             'background_url' => 'img/backgrounds/black-adam.jpg'
         ]);
@@ -43,7 +43,7 @@ class MovieSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
             
             'director' => 'Bayu',
-            'release_date' => '2018',
+            'release_date' => '2018-01-01',
             'thumbnail_url' => 'img/thumbnails/a-quiet-place.jpg',
             'background_url' => 'img/backgrounds/a-quiet-place.jpg'
         ]);
@@ -54,7 +54,7 @@ class MovieSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
             
             'director' => 'Bayu',
-            'release_date' => '2019',
+            'release_date' => '2019-01-01',
             'thumbnail_url' => 'img/thumbnails/venom.jpg',
             'background_url' => 'img/backgrounds/venom.jpg'
         ]);
@@ -65,7 +65,7 @@ class MovieSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
             
             'director' => 'Bayu',
-            'release_date' => '2019',
+            'release_date' => '2019-01-01',
             'thumbnail_url' => 'img/thumbnails/the-banshees-of-iniherin.jpg',
             'background_url' => 'img/backgrounds/the-banshees-of-iniherin.jpg'
         ]);
@@ -76,7 +76,7 @@ class MovieSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
             
             'director' => 'Bayu',
-            'release_date' => '2019',
+            'release_date' => '2019-01-01',
             'thumbnail_url' => 'img/thumbnails/lou.jpg',
             'background_url' => 'img/backgrounds/lou.jpg'
         ]);
@@ -87,7 +87,7 @@ class MovieSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cupiditate vero quia corporis itaque perspiciatis?',
             
             'director' => 'Bayu',
-            'release_date' => '2019',
+            'release_date' => '2019-01-01',
             'thumbnail_url' => 'img/thumbnails/top-gun-maverick.jpg',
             'background_url' => 'img/backgrounds/top-gun-maverick.jpg'
         ]);
