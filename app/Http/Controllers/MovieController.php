@@ -30,7 +30,7 @@ class MovieController extends Controller
 
         if(auth()->user()){
             $temp =  Watchlist::select('movie_id')
-                                ->where('user_id', '=', auth()->user()->id)
+                                ->where('user_id', auth()->user()->id)
                                 ->get();
 
             foreach($temp as $t){
@@ -97,19 +97,18 @@ class MovieController extends Controller
             $validated['background_url'] = $request->file('background_url')->store('img/backgrounds');
         }
 
-        $date = date('Y-m-d', strtotime($request->release_date));
-        $release_date = explode('-', $date);
-
         Movie::create([
             'title' => $validated['title'],
             'description' => $validated['description'],
             'director' => $validated['director'],
-            'release_date' => $release_date[0],
+            'release_date' => $validated['release_date'],
             'thumbnail_url' => $validated['thumbnail_url'],
             'background_url' => $validated['background_url']
         ]);
 
         $latest_movie = Movie::latest()->first();
+
+        //
 
         $genres_size = sizeof($request->genres);
 
@@ -121,6 +120,8 @@ class MovieController extends Controller
             ]);
 
         }
+
+        //
 
         $actors_size = sizeof($request->actors);
 
@@ -182,8 +183,17 @@ class MovieController extends Controller
         //
         $genres = Genre::all();
         $actors = Actor::all();
-        $genre_movie = GenreMovie::where('movie_id', $movie->id);
-        $characters = Character::where('movie_id', $movie->id);
+
+        //
+        $genre_movie = collect();
+        $temp1 = GenreMovie::select('genre_id')
+                    ->where('movie_id', $movie->id)
+                    ->get();
+
+        foreach($temp1 as $t1) $genre_movie->push($t1->genre_id);
+        
+        //
+        $characters = Character::where('movie_id', $movie->id)->get();
 
         return view('movies.edit', compact('movie', 'genres', 'actors', 'genre_movie', 'characters'));
     }
@@ -198,6 +208,79 @@ class MovieController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validated = $request->validate([
+            'title' => ['required', 'min:2', 'max:50'],
+            'description' => ['required', 'min:8'],
+            'genres' => ['required', 'array', 'min:1'],
+            'actors' => ['required', 'array', 'min:1'],
+            'actors.*' => ['required', 'numeric'],
+            'characters' => ['required', 'array', 'min:1'],
+            'characters.*' => ['required', 'string'],
+            'director' => ['required', 'min:3'],
+            'release_date' => ['required'],
+            'thumbnail_url' => ['required_if:old_thumbnail_url,null', 'image'],
+            'background_url' => ['required_if:old_background_url,null', 'image']
+        ]);
+
+
+        if($request->file('thumbnail_url')){
+            $validated['thumbnail_url'] = $request->file('thumbnail_url')->store('img/thumbnails');
+        }
+        else{
+            $validated['thumbnail_url'] = $request->old_thumbnail_url;
+        }
+
+        //
+
+        if($request->file('background_url')){
+            $validated['background_url'] = $request->file('background_url')->store('img/backgrounds');
+        }
+        else{
+            $validated['background_url'] = $request->old_background_url;
+        }
+
+        Movie::where('id', $id)
+        ->update([
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'director' => $validated['director'],
+            'release_date' => $validated['release_date'],
+            'thumbnail_url' => $validated['thumbnail_url'],
+            'background_url' => $validated['background_url']
+        ]);
+
+        //
+
+        GenreMovie::where('movie_id', $id)->delete();
+
+        $genres_size = sizeof($request->genres);
+
+        for($i = 0; $i < $genres_size; $i++){
+
+            GenreMovie::create([
+                'movie_id' => $id,
+                'genre_id' => $validated['genres'][$i]
+            ]);
+
+        }
+
+        // 
+
+        Character::where('movie_id', $id)->delete();
+
+        $actors_size = sizeof($request->actors);
+
+        for($i = 0; $i < $actors_size; $i++){
+            
+            Character::create([
+                'movie_id' => $id,
+                'actor_id' => $validated['actors'][$i],
+                'name' => $validated['characters'][$i]
+            ]);
+
+        }
+
+        return redirect('/movies')->with('upd_movie_success', $request->title . ' movie updated successfuly!');
 
     }
 
@@ -212,13 +295,13 @@ class MovieController extends Controller
         //
         Movie::destroy($movie->id);
 
-        // if($movie->thumbnail_url){
-        //     Storage::delete($movie->thumbnail_url);
-        // }
+        if($movie->thumbnail_url){
+            // Storage::delete('img/thumbnails/' . $movie->thumbnail_url);
+        }
 
-        // if($movie->background_url){
-        //     Storage::delete($movie->bakground_url);
-        // }
+        if($movie->background_url){
+            // Storage::delete('img/backgrounds/' . $movie->bakground_url);
+        }
 
         return redirect('/movies')->with('del_movie_success', $movie->title . ' has been removed!');
     }

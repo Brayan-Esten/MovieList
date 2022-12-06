@@ -38,7 +38,7 @@
 
                             <label for="description" class="form-label">Description</label>
                             <textarea type="text" class="form-control @error('description') is-invalid @enderror" 
-                            id="description" name="description">{{ old('description') }}</textarea>
+                            id="description" name="description" rows="4">{{ old('description') }}</textarea>
 
                             @error('description')
                                 <div class="invalid-feedback">

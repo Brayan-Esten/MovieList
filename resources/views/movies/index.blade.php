@@ -16,12 +16,24 @@
         </div>
     @endif
 
+    @if(session()->has('upd_movie_success'))
+        <div class="alert alert-success alert-dismissible fade show w-50 m-auto" role="alert">
+            {{ session('upd_movie_success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     @if(session()->has('add_to_watchlist_success'))
         <div class="alert alert-success alert-dismissible fade show w-50 m-auto" role="alert">
             {{ session('add_to_watchlist_success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
+
+    
+
+
+
 
     {{-- hero section --}}
 
@@ -231,7 +243,7 @@
                         <div class="card-body">
                             <p class="card-title text-light text-left text-truncate">{{ $m->title }}</p>
                             <div class="d-flex justify-content-between">
-                                <small class="card-text text-muted">{{ $m->release_date }}</small>
+                                <small class="card-text text-muted">{{ date('Y', strtotime($m->release_date)) }}</small>
                                 @can('user')
                                 @if ($watchlist->contains($m->id))
                                     <i class="bi bi-check text-muted" style="font-size: 1.2rem"></i>

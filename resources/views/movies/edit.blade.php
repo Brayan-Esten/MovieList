@@ -14,9 +14,9 @@
                         </h4>
                     </div>
 
-                    <form class="mt-4" action="/movies" method="post" enctype="multipart/form-data">
-                        @csrf
+                    <form class="mt-4" action="/movies/{{ $movie->id }}" method="post" enctype="multipart/form-data">
                         @method('put')
+                        @csrf
 
                         {{-- title --}}
                         <div class="my-input mb-3 has-validation">
@@ -40,8 +40,7 @@
 
                             <label for="description" class="form-label">Description</label>
                             
-                            <textarea type="text" class="form-control @error('description') is-invalid @enderror" 
-                            id="description" name="description">
+                            <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="4">{{ old('description', $movie->description) }}
                             </textarea>
 
                             @error('description')
@@ -69,7 +68,11 @@
                                     @foreach($genres as $g)
                                     <li class="dropdown-item">
                                         <label class="form-check-label d-block w-100">
-                                            <input class="form-check-input" type="checkbox" value="{{ $g->id }}" name="genres[]">
+                                            <input class="form-check-input" type="checkbox" value="{{ $g->id }}" 
+                                            name="genres[]" 
+                                            @if ($genre_movie->contains($g->id))
+                                                checked
+                                            @endif>
                                             {{ $g->type }}
                                         </label>
                                     </li>
@@ -91,19 +94,24 @@
 
                         {{-- actors / character --}}
                         <div class="my-input mb-3 has-validation" id="charInput">
+                        
+                        @foreach($characters as $c)
 
                             <div class="d-flex justify-content-around w-100 mb-3">
                                 
+
                                 <div class="actor-input">
                                     <label class="form-label">Actor</label>
                                     <select class="form-select @error('actors.*') is-invalid @enderror"
                                     name="actors[]">
                                         <option value="">-- Open this select menu --</option>
                                         @foreach($actors as $a)
-                                            <option value="{{ $a->id }}">{{ $a->name }}</option>
+                                            <option value="{{ $a->id }}" @if($a->id == $c->actor_id) selected @endif>
+                                                {{ $a->name }}
+                                            </option>
                                         @endforeach
                                     </select>
-
+    
                                     @error('actors.*')
                                         <div class="invalid-feedback">
                                             Please select one of the actors/actresses
@@ -114,9 +122,9 @@
                                 <div class="character-input">
                                     <label class="form-label">Character Name</label>
                                     <input type="text" class="form-control @error('characters.*') is-invalid @enderror"
-                                    value="{{ old('characters.*') }}"
+                                    value="{{ $c->name }}"
                                     name="characters[]">
-
+    
                                     @error('characters.*')
                                         <div class="invalid-feedback">
                                             {{ 'The character name must be filled' }}
@@ -124,8 +132,10 @@
                                     @enderror
                                 </div>
 
+                                
                             </div>
-
+                            
+                        @endforeach
                         </div>
                         
                         
@@ -165,7 +175,7 @@
 
                             <label for="release_date" class="form-label">Release Date</label>
                             <input type="date" class="form-control @error('release_date') is-invalid @enderror" 
-                            value="{{ date('Y-m-d', strtotime($movie->release_date)) }}"
+                            value="{{ old('release_date', date('Y-m-d', strtotime($movie->release_date))) }}"
                             id="release_date" name="release_date">
 
                             @error('release_date')
@@ -179,6 +189,9 @@
 
                         {{-- thumbnail_url --}}
                         <div class="my-input mb-3 has-validation">
+
+                            <input type="hidden" name="old_thumbnail_url" value="{{ $movie->thumbnail_url }}">
+
                             <label for="thubnail_url" class="form-label">Thumbnail</label>
                             <input type="file" class="form-control @error('thumbnail_url') is-invalid @enderror" 
                             id="thumbnail_url" name="thumbnail_url">
@@ -193,6 +206,9 @@
 
                         {{-- background_url --}}
                         <div class="my-input mb-3 has-validation">
+
+                            <input type="hidden" name="old_background_url" value="{{ $movie->background_url }}">
+
                             <label for="thubnail_url" class="form-label">Background</label>
                             <input type="file" class="form-control @error('background_url') is-invalid @enderror" 
                             id="background_url" name="background_url">
@@ -206,7 +222,7 @@
 
                         {{-- submit --}}
                         <button class="my-button btn btn-primary w-100 mt-3" type="submit">
-                            Create
+                            Update
                         </button>
                         
                     </form>

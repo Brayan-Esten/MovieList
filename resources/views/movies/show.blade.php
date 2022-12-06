@@ -30,7 +30,7 @@
                             @endcan
                         </div>
                         <p class="fw-thin" style="font-size: .9rem">
-                            Released on {{ $movie->release_date }}
+                            Released on {{ date('Y', strtotime($movie->release_date)) }}
                         </p>
                     </div>
 
@@ -113,7 +113,7 @@
                         <div class="card-body">
                             <p class="card-title text-light text-left">{{ $m->title }}</p>
                             <div class="d-flex justify-content-between">
-                                <small class="card-text text-muted">{{ $m->release_date }}</small>
+                                <small class="card-text text-muted">{{ date('Y', strtotime($m->release_date)) }}</small>
                                 @can('user')
                                 @if ($watchlist->contains($m->id))
                                     <i class="bi bi-check text-muted" style="font-size: 1.2rem"></i>
