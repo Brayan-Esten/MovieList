@@ -175,7 +175,7 @@
 
                         {{-- thumbnail_url --}}
                         <div class="my-input mb-3 has-validation">
-                            <label for="thubnail_url" class="form-label">Thumbnail</label>
+                            <label for="thumbnail_url" class="form-label">Thumbnail</label>
                             <input type="file" class="form-control @error('thumbnail_url') is-invalid @enderror" 
                             id="thumbnail_url" name="thumbnail_url">
 
@@ -189,7 +189,7 @@
 
                         {{-- background_url --}}
                         <div class="my-input mb-3 has-validation">
-                            <label for="thubnail_url" class="form-label">Background</label>
+                            <label for="background_url" class="form-label">Background</label>
                             <input type="file" class="form-control @error('background_url') is-invalid @enderror" 
                             id="background_url" name="background_url">
 

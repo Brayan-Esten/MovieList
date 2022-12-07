@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActorController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\RegisterController;
@@ -40,4 +41,12 @@ Route::get('/movies/{movie:id}', [MovieController::class, 'show']);
 
 // watchlist
 
-Route::resource('/watchlists', WatchlistController::class)->only(['store', 'destroy'])->middleware('auth'); 
+Route::resource('/watchlists', WatchlistController::class)->only(['store', 'destroy'])->middleware('auth');
+
+
+// actors
+
+Route::get('/actors', [ActorController::class, 'index']);
+Route::resource('/actors', ActorController::class)->except(['index', 'show'])->middleware('admin');
+Route::get('/actors/{actor:id}', [ActorController::class, 'show']);
+

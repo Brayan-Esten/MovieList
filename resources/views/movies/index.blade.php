@@ -3,34 +3,46 @@
 @section('content')
 
     @if(session()->has('add_movie_success'))
-        <div class="alert alert-success alert-dismissible fade show w-50 m-auto" role="alert">
+        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
             {{ session('add_movie_success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
     @if(session()->has('del_movie_success'))
-        <div class="alert alert-success alert-dismissible fade show w-50 m-auto" role="alert">
+        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
             {{ session('del_movie_success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
     @if(session()->has('upd_movie_success'))
-        <div class="alert alert-success alert-dismissible fade show w-50 m-auto" role="alert">
+        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
             {{ session('upd_movie_success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
     @if(session()->has('add_to_watchlist_success'))
-        <div class="alert alert-success alert-dismissible fade show w-50 m-auto" role="alert">
+        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
             {{ session('add_to_watchlist_success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
-    
+    @if(session()->has('remove_from_watchlist_success'))
+        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
+            {{ session('remove_from_watchlist_success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if(session()->has('add_actor_success'))
+        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
+            {{ session('add_actor_success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
 
 
@@ -74,14 +86,31 @@
                                 </p>
 
                                 @can('user')
-                                    <button class="my-button btn btn-primary w-50">
-                                        <i class="bi bi-plus"></i>
-                                        Add to Watchlist
-                                    </button>
+                                @if ($watchlist->contains($c->id))
+                                    <form class="d-inline" action="/watchlists/{{ $c->id }}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <input type="hidden" name="movie_title" value="{{ $c->title }}">
+                                        <button class="my-button btn btn-primary w-50">
+                                            <i class="bi bi-trash"></i>
+                                            Remove from Watchlist
+                                        </button>
+                                    </form>
+                                @else
+                                    <form class="d-inline" action="/watchlists" method="post">
+                                        @csrf
+                                        <input type="hidden" name="movie_id" value="{{ $c->id }}">
+                                        <input type="hidden" name="movie_title" value="{{ $c->title }}">
+                                        <button class="my-button btn btn-primary w-50">
+                                            <i class="bi bi-plus"></i>
+                                            Add to Watchlist
+                                        </button>
+                                    </form>
+                                @endif
                                 @endcan
                             </div>
                         </div>
-                        <img src="{{ asset('storage/' .  $c->background_url) }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('storage/' .  $c->background_url) }}" class="d-block w-100" alt="..." loading="lazy">
                     </div>
                 </div>  
             @endforeach
@@ -110,7 +139,7 @@
                 <div class="carousel-item @if($loop->first) active @endif">
                     <div class="card">
                         <a href="/movies/{{ $p->id }}">
-                            <img class="img-thumbnail movie-thumbnail" src="{{ asset('storage/' . $p->thumbnail_url) }}" alt="...">
+                            <img class="movie-thumbnail" src="{{ asset('storage/' . $p->thumbnail_url) }}" alt="..." loading="lazy">
                         </a>
                         <div class="card-body">
                             <p class="card-title text-light text-left">{{ $p->title }}</p>
@@ -157,14 +186,10 @@
 
         <div class="section-header p-3 d-flex justify-content-between">
             <h4 class="text-light ms-2">
-                Show
+                Shows
             </h4>
             
             <form action="/" class="w-25">
-                @if (request('category'))
-                    <input type="hidden" name="category" value={{ request('category') }}>
-                @endif
-
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for movies ..." name="search"
                         value="{{ request('search') }}">
@@ -238,7 +263,7 @@
                 <div class="carousel-item @if($loop->first) active @endif">
                     <div class="card">
                         <a href="/movies/{{ $m->id }}">
-                            <img class="img-thumbnail movie-thumbnail" src="{{ asset('storage/' . $m->thumbnail_url) }}" alt="...">
+                            <img class="movie-thumbnail" src="{{ asset('storage/' . $m->thumbnail_url) }}" alt="..." loading="lazy">
                         </a>
                         <div class="card-body">
                             <p class="card-title text-light text-left text-truncate">{{ $m->title }}</p>
@@ -279,6 +304,9 @@
     </div>
 
 
+
+
+    
     {{-- jQuery --}}
     <script src="/js/jquery-3.6.1.min.js"></script>
 

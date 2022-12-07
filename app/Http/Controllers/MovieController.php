@@ -293,14 +293,16 @@ class MovieController extends Controller
     public function destroy(Movie $movie)
     {
         //
+
+        dd($movie->title);
         Movie::destroy($movie->id);
-
+        
         if($movie->thumbnail_url){
-            // Storage::delete('img/thumbnails/' . $movie->thumbnail_url);
+            Storage::delete($movie->thumbnail_url);
         }
-
+        
         if($movie->background_url){
-            // Storage::delete('img/backgrounds/' . $movie->bakground_url);
+            Storage::delete($movie->bakground_url);
         }
 
         return redirect('/movies')->with('del_movie_success', $movie->title . ' has been removed!');

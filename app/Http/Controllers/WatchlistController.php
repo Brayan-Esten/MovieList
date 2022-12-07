@@ -22,7 +22,7 @@ class WatchlistController extends Controller
             'movie_id' => $request->movie_id
         ]);
 
-        return redirect('/movies')->with('add_to_watchlist_success', $request->movie_title . ' added to watchlist!');
+        return redirect('/movies')->with('add_to_watchlist_success', $request->movie_title . ' has been added to watchlist!');
 
     }
 
@@ -33,13 +33,13 @@ class WatchlistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy(Request $request, $id)
     {
         //
         Watchlist::where('user_id', auth()->user()->id)
-                    ->where('movie_id', $movie->id)
+                    ->where('movie_id', $id)
                     ->delete();
         
-        return redirect('/movies')->with('remove_from_watchlist_success', $movie->title . ' removed from watchlist!!');
+        return redirect('/movies')->with('remove_from_watchlist_success', $request->movie_title . ' has been removed from watchlist!');
     }
 }

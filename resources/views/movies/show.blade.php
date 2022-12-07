@@ -10,11 +10,16 @@
                 <div class="my-info text-light d-flex flex-column">
                     
                     <div class="mt-4">
+
                         <div class="d-flex justify-content-between">
-                            <h1 style="font-weight: 700;">{{ $movie->title }}</h1>
+
+                            <h1 style="width: 80%; font-weight: 700;">
+                                {{ $movie->title }}
+                            </h1>
+
                             @can('admin')
-                            <div>
-                                <a href="/movies/{{ $movie->id }}/edit" class="text-light mx-3" style="font-size: 1.5rem">
+                            <div class="d-flex justify-content-around" style="width: 20%;"">
+                                <a href="/movies/{{ $movie->id }}/edit" class="text-light" style="font-size: 1.5rem;">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                                 <form class="d-inline" action="/movies/{{ $movie->id }}" method="post">
@@ -28,10 +33,13 @@
                                 </form>
                             </div>
                             @endcan
+
                         </div>
+
                         <p class="fw-thin" style="font-size: .9rem">
                             Released on {{ date('Y', strtotime($movie->release_date)) }}
                         </p>
+
                     </div>
 
                     <div class="d-flex flex-row">
@@ -65,6 +73,7 @@
         </div>
     </div> 
 
+
     <div class="mt-5">
 
         <div class="section-header p-3">
@@ -73,24 +82,29 @@
             </h4>
         </div>
 
-        <div class="p-4 d-flex flex-wrap">
+        <div class="mx-auto p-3 d-flex flex-wrap" style="width: 96%">
+
             @foreach ($casts as $c)
-            <div class="cast-card">
+            <div class="cast-card m-4">
                 <a href="/actors/{{ $c->actor->id }}">
                     <div class="card">
                         <img class="actor-thumbnail card-img-top" 
                         src="{{ asset('storage/' . $c->actor->image_url) }}" alt="...">
                         <div class="card-body rounded-bottom">
-                            <p class="card-title text-light fw-bold" style="font-size: 1.1rem">{{ $c->actor->name }}</p>
-                            <small class="card-text text-light">{{ $c->name }}</small>
+                            <p class="card-title text-light fw-bold text-truncate" style="font-size: 1.1rem">
+                                {{ $c->actor->name }}
+                            </p>
+                            <small class="card-text text-light d-block text-truncate">{{ $c->name }}</small>
                         </div>
                     </div>
                 </a>
             </div>
             @endforeach
-        </div>
 
+        </div>
     </div>
+
+    
 
     <div class="mt-4">
         
@@ -108,7 +122,7 @@
                 <div class="carousel-item @if($loop->first) active @endif">
                     <div class="card">
                         <a href="/movies/{{ $m->id }}">
-                            <img class="img-thumbnail movie-thumbnail" src="{{ asset('storage/' . $m->thumbnail_url) }}" alt="...">
+                            <img class="movie-thumbnail" src="{{ asset('storage/' . $m->thumbnail_url) }}" alt="..." loading="lazy">
                         </a>
                         <div class="card-body">
                             <p class="card-title text-light text-left">{{ $m->title }}</p>

@@ -14,6 +14,6 @@ class Actor extends Model
     protected $guarded = ['id'];
 
     public function movies(){
-        return $this->belongsToMany(Movie::class)->using(Character::class);
+        return $this->belongsToMany(Movie::class, 'characters')->using(Character::class);
     }
 }

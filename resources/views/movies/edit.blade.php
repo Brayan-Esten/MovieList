@@ -192,7 +192,7 @@
 
                             <input type="hidden" name="old_thumbnail_url" value="{{ $movie->thumbnail_url }}">
 
-                            <label for="thubnail_url" class="form-label">Thumbnail</label>
+                            <label for="thumbnail_url" class="form-label">Thumbnail</label>
                             <input type="file" class="form-control @error('thumbnail_url') is-invalid @enderror" 
                             id="thumbnail_url" name="thumbnail_url">
 
@@ -209,7 +209,7 @@
 
                             <input type="hidden" name="old_background_url" value="{{ $movie->background_url }}">
 
-                            <label for="thubnail_url" class="form-label">Background</label>
+                            <label for="background_url" class="form-label">Background</label>
                             <input type="file" class="form-control @error('background_url') is-invalid @enderror" 
                             id="background_url" name="background_url">
 

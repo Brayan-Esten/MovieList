@@ -5,6 +5,7 @@
 @import url('movies-container.css');
 @import url('genres-container.css');
 @import url('movie-detail.css');
+@import url('actor-detail.css');
 
 
 :root {
@@ -59,7 +60,7 @@ img{
 }
 
 .section-header {
-    width: 95%;
+    width: 96%;
     margin: auto;
     position: relative;
 }

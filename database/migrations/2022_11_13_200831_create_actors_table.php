@@ -22,8 +22,7 @@ class CreateActorsTable extends Migration
             $table->date('dob');
             $table->string('pob');
             $table->string('image_url');
-            $table->integer('popularity');
-
+            $table->unsignedInteger('popularity');
 
             $table->timestamps();
 
