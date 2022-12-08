@@ -2,50 +2,12 @@
 
 @section('content')
 
-    @if(session()->has('add_movie_success'))
-        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
-            {{ session('add_movie_success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    @if(session()->has('message'))
+        <div class="text-light alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
+            {{ session('message') }}
+            <button type="button" class="text-light btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-
-    @if(session()->has('del_movie_success'))
-        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
-            {{ session('del_movie_success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-    @if(session()->has('upd_movie_success'))
-        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
-            {{ session('upd_movie_success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-    @if(session()->has('add_to_watchlist_success'))
-        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
-            {{ session('add_to_watchlist_success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-    @if(session()->has('remove_from_watchlist_success'))
-        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
-            {{ session('remove_from_watchlist_success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-    @if(session()->has('add_actor_success'))
-        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
-            {{ session('add_actor_success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-
-
 
     {{-- hero section --}}
 

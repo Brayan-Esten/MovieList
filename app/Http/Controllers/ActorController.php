@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Actor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ActorController extends Controller
 {
@@ -55,7 +56,7 @@ class ActorController extends Controller
 
         Actor::create($validated);
 
-        return redirect('/movies')->with('add_actor_success', 'New actor added!');
+        return redirect('/movies')->with('message', 'New actor added!');
     }
 
     /**
@@ -76,9 +77,10 @@ class ActorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Actor $actor)
     {
         //
+        return view('actors.edit', compact('actor'));
     }
 
     /**
@@ -91,6 +93,27 @@ class ActorController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validated = $request->validate([
+            'name' => ['required', 'min:3'],
+            'gender' => ['required'],
+            'biography' => ['required', 'min:10'],
+            'dob' => ['required'],
+            'pob' => ['required'],
+            'image_url' => ['required_if:old_image_url,null', 'image'],
+            'popularity' => ['required', 'numeric']
+        ]);
+
+        if($request->image_url){
+            $validated['image_url'] = $request->file('image_url')->store('img/actors');
+            Storage::delete($request->old_image_url);
+        }else{
+            $validated['image_url'] = $request->old_image_url;
+        }
+        
+
+        Actor::where('id', $id)->update($validated);
+
+        return redirect('/movies')->with('message', ucwords($request->name) . ' has been updated!');
     }
 
     /**
@@ -99,8 +122,15 @@ class ActorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Actor $actor)
     {
         //
+        Actor::destroy($actor->id);
+
+        // if($actor->image_url){
+        //     Storage::delete($actor->image_url);
+        // }
+
+        return redirect('/movies')->with('message', ucwords($actor->name) . ' has been removed!');
     }
 }

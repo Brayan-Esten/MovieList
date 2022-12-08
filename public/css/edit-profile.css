@@ -1,0 +1,18 @@
+.pfp{
+    width: 200px;
+    height: 220px;
+    cursor: pointer;
+    /* background-color: red; */
+    display: grid;
+    place-content: center;
+}
+
+.pfp img{
+    width: 192px; 
+    height: 192px;
+    border: 5px solid var(--grey);
+}
+
+.modal-content{
+    background-color: var(--grey);
+}

@@ -30,7 +30,7 @@
                 @auth
                     @can('user')
                         <li class="nav-item">
-                            <a href="/watchlist" class="nav-link">
+                            <a href="/watchlists" class="nav-link">
                                 My Watchlist
                             </a>
                         </li>
@@ -41,7 +41,11 @@
                             <i class="bi bi-person-circle"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                            <li>
+                                <a class="dropdown-item" href="/users/{{ auth()->user()->id }}/edit">
+                                    Profile
+                                </a>   
+                            </li>
                             <li>
                                 <form action="/logout" method="post">
                                     @csrf

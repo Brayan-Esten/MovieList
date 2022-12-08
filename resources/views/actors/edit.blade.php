@@ -14,7 +14,8 @@
                         </h4>
                     </div>
 
-                    <form class="mt-4" action="/actors" method="post" enctype="multipart/form-data">
+                    <form class="mt-4" action="/actors/{{ $actor->id }}" method="post" enctype="multipart/form-data">
+                        @method('put')
                         @csrf
 
                         {{-- name --}}
@@ -22,7 +23,7 @@
 
                             <label for="title" class="form-label">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" 
-                            value="{{ old('name') }}"
+                            value="{{ old('name', $actor->name) }}"
                             id="name" name="name">
 
                             @error('name')
@@ -41,8 +42,8 @@
                             <select class="form-select @error('gender') is-invalid @enderror"
                             name="gender">
                                 <option value="">-- Open this select menu --</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="male" @if($actor->gender == 'male') selected @endif>Male</option>
+                                <option value="female" @if($actor->gender == 'female') selected @endif>Female</option>
                             </select>
 
                             @error('gender')
@@ -59,7 +60,7 @@
 
                             <label for="biography" class="form-label">Biography</label>
                             <textarea type="text" class="form-control @error('biography') is-invalid @enderror" 
-                            id="biography" name="biography" rows="7">{{ old('biography') }}</textarea>
+                            id="biography" name="biography" rows="7">{{ old('biography', $actor->biography) }}</textarea>
 
                             @error('biography')
                                 <div class="invalid-feedback">
@@ -75,7 +76,7 @@
 
                             <label for="dob" class="form-label">Date of Birth</label>
                             <input type="date" class="form-control @error('dob') is-invalid @enderror" 
-                            value="{{ old('dob') }}"
+                            value="{{ old('dob', date('Y-m-d', strtotime($actor->dob))) }}"
                             id="dob" name="dob">
 
                             @error('dob')
@@ -92,7 +93,7 @@
 
                             <label for="pob" class="form-label">Place of Birth</label>
                             <input type="text" class="form-control @error('pob') is-invalid @enderror" 
-                            value="{{ old('popularity') }}"
+                            value="{{ old('popularity', $actor->pob) }}"
                             id="pob" name="pob">
 
                             @error('popularity')
@@ -106,6 +107,8 @@
 
                         {{-- image url --}}
                         <div class="my-input mb-3 has-validation">
+
+                            <input type="hidden" name="old_image_url" value="{{ $actor->image_url }}">
 
                             <label for="image_url" class="form-label">Image URL</label>
                             <input type="file" class="form-control @error('image_url') is-invalid @enderror" 
@@ -125,7 +128,7 @@
 
                             <label for="popularity" class="form-label">Popularity</label>
                             <input type="number" class="form-control @error('popularity') is-invalid @enderror" 
-                            value="{{ old('popularity') }}"
+                            value="{{ old('popularity', $actor->popularity) }}"
                             id="popularity" name="popularity">
 
                             @error('popularity')
@@ -139,7 +142,7 @@
 
                         {{-- submit --}}
                         <button class="my-button btn btn-primary w-100 mt-3" type="submit">
-                            Create
+                            Update
                         </button>
                         
                     </form>

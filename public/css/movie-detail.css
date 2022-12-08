@@ -31,7 +31,7 @@
     transition: .6s;
 }
 
-.cast-card .card-body:hover{
+.cast-card:hover .card-body{
     background-color: var(--red);
 }
 

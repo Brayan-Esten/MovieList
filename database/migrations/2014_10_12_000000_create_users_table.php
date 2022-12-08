@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->date('date_joined');
             $table->date('dob')->default(date('Y-m-d', time()));
-            $table->string('phone')->default('');
-            $table->string('image_url')->default('default.jpg');
+            $table->string('phone')->nullable();
+            $table->string('image_url')->nullable();
             $table->boolean('is_admin')->default(false);
 
 

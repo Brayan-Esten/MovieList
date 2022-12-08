@@ -56,7 +56,7 @@
                             @method('delete')
                             @csrf
 
-                            <button class="text-light" onclick="return confirm('Delete this movie ?')"
+                            <button class="text-light" onclick="return confirm('Delete this actor ?')"
                             style="font-size: 1.5rem; border: none; background: transparent">
                                 <i class="bi bi-trash"></i>
                             </button>

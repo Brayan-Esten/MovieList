@@ -5,6 +5,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\WatchlistController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,3 +52,8 @@ Route::get('/actors', [ActorController::class, 'index']);
 Route::resource('/actors', ActorController::class)->except(['index', 'show'])->middleware('admin');
 Route::get('/actors/{actor:id}', [ActorController::class, 'show']);
 
+
+// user's profile
+
+Route::resource('/users', UserController::class)->only(['edit', 'update'])->middleware('auth');
+Route::put('/users/{id}/avatar', [UserController::class, 'updateAvatar'])->middleware('auth');

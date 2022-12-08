@@ -135,7 +135,7 @@ class MovieController extends Controller
 
         }
 
-        return redirect('/movies')->with('add_movie_success', 'New movie added!');
+        return redirect('/movies')->with('message', 'New movie added!');
     }
 
     /**
@@ -280,7 +280,7 @@ class MovieController extends Controller
 
         }
 
-        return redirect('/movies')->with('upd_movie_success', $request->title . ' movie updated successfuly!');
+        return redirect('/movies')->with('message', ucwords($request->title) . ' has been updated!');
 
     }
 
@@ -294,7 +294,7 @@ class MovieController extends Controller
     {
         //
 
-        dd($movie->title);
+        // dd($movie->title);
         Movie::destroy($movie->id);
         
         if($movie->thumbnail_url){
@@ -305,6 +305,6 @@ class MovieController extends Controller
             Storage::delete($movie->bakground_url);
         }
 
-        return redirect('/movies')->with('del_movie_success', $movie->title . ' has been removed!');
+        return redirect('/movies')->with('message', ucwords($movie->title) . ' has been removed!');
     }
 }

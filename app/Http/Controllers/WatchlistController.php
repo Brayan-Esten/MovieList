@@ -22,7 +22,7 @@ class WatchlistController extends Controller
             'movie_id' => $request->movie_id
         ]);
 
-        return redirect('/movies')->with('add_to_watchlist_success', $request->movie_title . ' has been added to watchlist!');
+        return redirect('/movies')->with('message', $request->movie_title . ' has been added to watchlist!');
 
     }
 
@@ -40,6 +40,6 @@ class WatchlistController extends Controller
                     ->where('movie_id', $id)
                     ->delete();
         
-        return redirect('/movies')->with('remove_from_watchlist_success', $request->movie_title . ' has been removed from watchlist!');
+        return redirect('/movies')->with('message', $request->movie_title . ' has been removed from watchlist!');
     }
 }
