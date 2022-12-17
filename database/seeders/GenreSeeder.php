@@ -16,6 +16,14 @@ class GenreSeeder extends Seeder
     {
         //
         Genre::create([
+            'type' => 'Action'
+        ]);
+
+        Genre::create([
+            'type' => 'Adventure'
+        ]);
+
+        Genre::create([
             'type' => 'Comedy'
         ]);
 
@@ -28,39 +36,16 @@ class GenreSeeder extends Seeder
         ]);
 
         Genre::create([
-            'type' => 'Family'
-        ]);
-
-        Genre::create([
             'type' => 'Fantasy'
         ]);
-
+        
         Genre::create([
-            'type' => 'History'
+            'type' => 'Horror'
         ]);
-
-        Genre::create([
-            'type' => 'Action'
-        ]);
-
+        
         Genre::create([
             'type' => 'Sci-Fi'
         ]);
 
-        Genre::create([
-            'type' => 'Romance'
-        ]);
-
-        Genre::create([
-            'type' => 'Thriller'
-        ]);
-
-        Genre::create([
-            'type' => 'Horror'
-        ]);
-
-        Genre::create([
-            'type' => 'Animation'
-        ]);
     }
 }

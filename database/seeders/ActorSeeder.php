@@ -20,14 +20,12 @@ class ActorSeeder extends Seeder
             'name' => 'Emily Blunt',
             'gender' => 'female',
 
-            'biography' => 'Emily Olivia Leah Blunt was born on 23 February 1983 in the London Borough of Wandsworth, the second of four children born to Joanna, a former actress and teacher, and barrister Oliver Blunt, QC. Her siblings are Felicity, Sebastian, and Susannah. Her grandfather was Major General Peter Blunt, and one of her paternal uncles is Crispin Blunt, Conservative Member of Parliament for Reigate. From age seven to 14, Blunt had difficulties with stuttering. She credits a school teacher for helping her manage the stutter through acting. 
-            She went on to sit on the board of directors for the American Institute for Stuttering. 
-            Blunt attended Ibstock Place School in Roehampton, southwest London and, at age 16, went to Hurtwood House near Dorking, Surrey, a private sixth form college known for its performing arts programme. There, she was discovered and signed by an agent.',
+            'biography' => 'Emily Olivia Leah Blunt was born on 23 February 1983 in the London Borough of Wandsworth, the second of four children born to Joanna, a former actress and teacher, and barrister Oliver Blunt, QC. Her siblings are Felicity, Sebastian, and Susannah. Her grandfather was Major General Peter Blunt, and one of her paternal uncles is Crispin Blunt, Conservative Member of Parliament for Reigate. From age seven to 14, Blunt had difficulties with stuttering. She credits a school teacher for helping her manage the stutter through acting. She went on to sit on the board of directors for the American Institute for Stuttering. Blunt attended Ibstock Place School in Roehampton, southwest London and, at age 16, went to Hurtwood House near Dorking, Surrey, a private sixth form college known for its performing arts programme. There, she was discovered and signed by an agent.',
 
             'dob' => '1983-02-23',
             'pob' => 'Roehampton, London, England, UK',
             'image_url' => 'img/actors/emily-blunt.jpg',
-            'popularity' => rand(0, 100)
+            'popularity' => 0
 
         ]);
 
@@ -40,7 +38,7 @@ class ActorSeeder extends Seeder
             'dob' => '1979-10-20',
             'pob' => 'Newton, Massachusetts, USA',
             'image_url' => 'img/actors/john-krasinski.jpg',
-            'popularity' => rand(0, 100)
+            'popularity' => 0
 
         ]);
 
@@ -48,7 +46,7 @@ class ActorSeeder extends Seeder
             'name' => 'Millicent Simmonds',
             'gender' => 'female',
 
-            'biography' => "Simmonds grew up in Bountiful, Utah in the United States. She has four siblings; two older and two younger than her.Prior to turning 12 months old, Simmonds lost her hearing due to a medication overdose. Her mother learned American Sign Language and taught the family so they could communicate with her. Simmonds said without her family using ASL, 'I wouldn't have a relationship with my own family, I wouldn't have communication.' Simmonds also has a cochlear implant. Simmonds's mother also encouraged her to read books extensively. When Simmonds was three years old, she started attending the Jean Massieu School of the Deaf, where she participated in its drama club. Her first play was in A Midsummer Night's Dream as Puck. After completing sixth grade, she mainstreamed at the Mueller Park Junior High School in the fall of 2015. She has performed at the Utah Shakespeare Festival in Cedar City, Utah, and her primary film experience before Wonderstruck was a deaf student's short, 'Color the World'.",
+            'biography' => "Simmonds grew up in Bountiful, Utah in the United States. She has four siblings; two older and two younger than her.Prior to turning 12 months old, Simmonds lost her hearing due to a medication overdose. Her mother learned American Sign Language and taught the family so they could communicate with her. Simmonds said without her family using ASL, \"I wouldn't have a relationship with my own family, I wouldn't have communication. \"Simmonds also has a cochlear implant. Simmonds's mother also encouraged her to read books extensively. When Simmonds was three years old, she started attending the Jean Massieu School of the Deaf, where she participated in its drama club. Her first play was in A Midsummer Night's Dream as Puck. After completing sixth grade, she mainstreamed at the Mueller Park Junior High School in the fall of 2015. She has performed at the Utah Shakespeare Festival in Cedar City, Utah, and her primary film experience before Wonderstruck was a deaf student's short, 'Color the World'.",
             
             'dob' => '2003-03-06',
             'pob' => 'Bountiful, Utah, USA',
@@ -58,10 +56,38 @@ class ActorSeeder extends Seeder
         ]);
 
         Actor::create([
+            'name' => 'Keanu Reeves',
+            'gender' => 'male',
+
+            'biography' => "Keanu Charles Reeves, whose first name means \cool breeze over the mountains' in Hawaiian, was born September 2, 1964 in Beirut, Lebanon. He is the son of Patricia Taylor, a showgirl and costume designer, and Samuel Nowlin Reeves, a geologist. Keanu's father was born in Hawaii, of British, Portuguese, Native Hawaiian, and Chinese ancestry, and Keanu's mother is originally from England. After his parents' marriage dissolved, Keanu moved with his mother and younger sister, Kim Reeves, to New York City, then Toronto. Stepfather #1 was Paul Aaron, a stage and film director - he and Patricia divorced within a year, after which she went on to marry (and divorce) rock promoter Robert Miller and hair salon owner Jack Bond. Reeves never reconnected with his biological father. In high school, Reeves was lukewarm toward academics but took a keen interest in ice hockey (as team goalie, he earned the nickname 'The Wall') and drama. He eventually dropped out of school to pursue an acting career.",
+            
+            'dob' => '1964-09-02',
+            'pob' => 'Beirut, Lebanon',
+            'image_url' => 'img/actors/keanu-reeves.jpg',
+            'popularity' => 0
+
+        ]);
+
+        Actor::create([
+            'name' => 'Carrie-Anne Moss',
+            'gender' => 'female',
+
+            'biography' => "Carrie-Anne Moss was born and raised in Vancouver, Canada. At age 20, after studying at the American Academy of Dramatic Arts, she moved to Europe to pursue a career in modeling. While in Spain she was cast in the TV show Dark Justice which was produced in Barcelona for its first season and Los Angeles for its second. Once in LA, Carrie-Anne was cast in other series regular opportunities like Matrix (which coincidentally presaged the movie that would later make her famous), and then Aaron Spelling's Models Inc. Carrie-Anne's work was gaining attention when the late great Mali Finn brought her in to audition for The Wachowski's, who offered her the opportunity to create the iconic cyber warrior 'Trinity'. Alongside her 'One' Keanu Reeves, in stride with Laurence Fishburne and the multifaceted Hugo Weaving. Carrie-Anne Moss galvanized her place in cinematic history in one of the highest grossing sci-fi action franchises of all time.",
+            
+            'dob' => '1967-08-21',
+            'pob' => 'British Columbia, Canada',
+            'image_url' => 'img/actors/carrie-anne-moss.jpg',
+            'popularity' => 0
+
+        ]);
+
+        Actor::create([
             'name' => 'Colin Farrell',
             'gender' => 'male',
 
-            'biography' => "Colin James Farrell was born in the Castleknock suburb of Dublin on 31 May 1976, the son of Rita and Eamon Farrell. His father played football for Shamrock Rovers FC and ran a health food shop. His uncle, Tommy Farrell, also played for Shamrock Rovers. He has an older brother named Eamon Jr. and two sisters named Claudine (who now works as his personal assistant) and Catherine. He was educated at St. Brigid's National School, followed by the exclusive all-boys private school Castleknock College, and then Gormanston College in County Meath. He unsuccessfully auditioned for the boy band Boyzone around this time. He was inspired to try acting when Henry Thomas' performance in E.T. the Extra-Terrestrial (1982) moved him to tears. With his brother's encouragement, he attended the Gaiety School of Acting, but dropped out when he was cast as Danny Byrne in the BBC drama Ballykissangel. While travelling in Sydney at the age of 18, Farrell became a suspect in an attempted murder case. The police sketch looked remarkably like him and he had even described blacking out during the night in question; his only alibi was a journal kept by his friend, which explained that the two had been taking MDMA on the other side of town that night. ",
+            'biography' => "Colin James Farrell was born in the Castleknock suburb of Dublin on 31 May 1976, the son of Rita and Eamon Farrell. His father played football for Shamrock Rovers FC and ran a health food shop. His uncle, Tommy Farrell, also played for Shamrock Rovers. He has an older brother named Eamon Jr. and two sisters named Claudine (who now works as his personal assistant) and Catherine. He was educated at St. 
+            Brigid's National School, followed by the exclusive all-boys private school Castleknock College, and then Gormanston College in County Meath. He unsuccessfully auditioned for the boy band Boyzone around this time. He was inspired to try acting when Henry Thomas' performance in E.T. the Extra-Terrestrial (1982) moved him to tears. With his brother's encouragement, he attended the Gaiety School of Acting, but dropped out when he 
+            was cast as Danny Byrne in the BBC drama Ballykissangel. While travelling in Sydney at the age of 18, Farrell became a suspect in an attempted murder case. The police sketch looked remarkably like him and he had even described blacking out during the night in question; his only alibi was a journal kept by his friend, which explained that the two had been taking MDMA on the other side of town that night.",
             
             'dob' => '1976-05-31',
             'pob' => 'Castleknock, Dublin, Ireland',
@@ -74,7 +100,7 @@ class ActorSeeder extends Seeder
             'name' => 'Brendan Gleeson',
             'gender' => 'male',
 
-            'biography' => "Gleeson was born in Dublin, the son of Pat (1925-2007) and Frank Gleeson (1918-2010). Gleeson has described himself as having been an avid reader as a child. He received his second-level education at St Joseph's CBS in Fairview, Dublin where he was a member of the school drama group. He received his Bachelor of Arts at University College Dublin, majoring in English and Irish. After training as an actor, he worked for several years as a secondary school teacher of Irish and English at the now defunct Catholic Belcamp College in North County Dublin, which closed in 2004. He was working simultaneously as an actor while teaching, doing semi-professional and professional productions in Dublin and surrounding areas. He left the teaching profession to commit full-time to acting in 1991. In an NPR interview to promote Calvary in 2014, Gleeson stated he was molested as a child by a Christian Brother in primary school but was in 'no way traumatised by the incident.'",
+            'biography' => "Gleeson was born in Dublin, the son of Pat (1925-2007) and Frank Gleeson (1918-2010). Gleeson has described himself as having been an avid reader as a child. He received his second-level education at St Joseph's CBS in Fairview, Dublin where he was a member of the school drama group. He received his Bachelor of Arts at University College Dublin, majoring in English and Irish. After training as an actor, he worked for several years as a secondary school teacher of Irish and English at the now defunct Catholic Belcamp College in North County Dublin, which closed in 2004. He was working simultaneously as an actor while teaching, doing semi-professional and professional productions in Dublin and surrounding areas. He left the teaching profession to commit full-time to acting in 1991. In an NPR interview to promote Calvary in 2014, Gleeson stated he was molested as a child by a Christian Brother in primary school but was in \"no way traumatised by the incident.\"",
             
             'dob' => '1955-03-29',
             'pob' => 'Dublin, Ireland',
@@ -139,7 +165,7 @@ class ActorSeeder extends Seeder
             'name' => 'Tom Cruise',
             'gender' => 'male',
 
-            'biography' => "Cruise was born on July 3, 1962, in Syracuse, New York, to electrical engineer Thomas Cruise Mapother III (1934-1984) and special education teacher Mary Lee (née Pfeiffer; 1936–2017). His parents were both from Louisville, Kentucky, and had English, German, and Irish ancestry. Cruise has three sisters named Lee Anne, Marian, and Cass. One of his cousins, William Mapother, is also an actor who has appeared alongside Cruise in five films. Cruise grew up in near poverty and had a Catholic upbringing. He later described his father as 'a merchant of chaos', a 'bully', and a 'coward' who beat his children. He elaborated, '[My father] was the kind of person where, if something goes wrong, they kick you. It was a great lesson in my life—how he'd lull you in, make you feel safe and then, bang! For me, it was like, 'There's something wrong with this guy. Don't trust him. Be careful around him.'",
+            'biography' => "Cruise was born on July 3, 1962, in Syracuse, New York, to electrical engineer Thomas Cruise Mapother III (1934-1984) and special education teacher Mary Lee (née Pfeiffer; 1936–2017). His parents were both from Louisville, Kentucky, and had English, German, and Irish ancestry. Cruise has three sisters named Lee Anne, Marian, and Cass. One of his cousins, William Mapother, is also an actor who has appeared alongside Cruise in five films. Cruise grew up in near poverty and had a Catholic upbringing. He later described his father as 'a merchant of chaos', a 'bully', and a 'coward' who beat his children. He elaborated, \"My 'father' was the kind of person where, if something goes wrong, they kick you. It was a great lesson in my life—how he'd lull you in, make you feel safe and then, bang! For me, it was like, 'There's something wrong with this guy. Don't trust him. Be careful around him.\"",
             
             'dob' => '1962-06-03',
             'pob' => 'Syracuse, New York, USA',
