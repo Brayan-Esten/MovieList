@@ -59,7 +59,7 @@ class CharacterSeeder extends Seeder
         ]);
 
         Character::create([
-            'movie_id' => 4,
+            'movie_id' => 3,
             'actor_id' => 7,
             'name' => 'Colm Doherty'// Brendan Gleeson
         ]);

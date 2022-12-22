@@ -41,11 +41,6 @@ Route::resource('/movies', MovieController::class)->except(['index', 'show'])->m
 Route::get('/movies/{movie:id}', [MovieController::class, 'show']);
 
 
-// watchlist
-
-Route::resource('/watchlists', WatchlistController::class)->only(['store', 'destroy'])->middleware('auth');
-
-
 // actors
 
 Route::get('/actors', [ActorController::class, 'index']);
@@ -57,3 +52,8 @@ Route::get('/actors/{actor:id}', [ActorController::class, 'show']);
 
 Route::resource('/users', UserController::class)->only(['edit', 'update'])->middleware('auth');
 Route::put('/users/{id}/avatar', [UserController::class, 'updateAvatar'])->middleware('auth');
+
+
+// watchlist
+
+Route::resource('/watchlists', WatchlistController::class)->only(['index', 'store', 'update', 'destroy'])->middleware('auth');

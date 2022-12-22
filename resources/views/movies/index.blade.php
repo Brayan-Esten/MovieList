@@ -3,7 +3,7 @@
 @section('content')
 
     @if(session()->has('message'))
-        <div class="text-light alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
+        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
             {{ session('message') }}
             <button type="button" class="text-light btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -80,7 +80,6 @@
         </div>
 
     </div>
-
 
 
     {{-- popular section --}}

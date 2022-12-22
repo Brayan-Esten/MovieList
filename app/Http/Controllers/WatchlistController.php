@@ -8,6 +8,28 @@ use Illuminate\Http\Request;
 
 class WatchlistController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(){
+        $my_watchlist = Watchlist::with('movie')
+                ->where('user_id', auth()->user()->id)
+                ->get();
+
+        if(request('filter_status') && request('filter_status') != 'all'){
+            $my_watchlist = Watchlist::with('movie')
+                ->where('user_id', auth()->user()->id)
+                ->where('status', request('filter_status'))
+                ->get();
+        }
+        
+        return view('watchlists.index', compact('my_watchlist'));
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -23,6 +45,34 @@ class WatchlistController extends Controller
         ]);
 
         return redirect('/movies')->with('message', $request->movie_title . ' has been added to watchlist!');
+
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function update(Request $request, $id){
+
+        if($request->status != 'remove'){
+            Watchlist::where('id', $id)
+            ->update(['status' => $request->status]);
+
+            return redirect('/watchlists')->with('message', 
+                $request->movie_title . '\'s status has been changed to ' . $request->status
+            );
+        }
+
+        Watchlist::destroy($id);
+
+        return redirect('/watchlists')->with('message', 
+            $request->movie_title . ' has been removed from watchlist'
+        );
 
     }
 
