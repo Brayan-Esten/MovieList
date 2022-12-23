@@ -6,15 +6,33 @@
 
 #popular .carousel-item,
 #movie .carousel-item{
+    cursor: pointer;
     display: block;
     flex: 0 0 18%;
     margin: 0 1em;
 }
 
-.carousel-control-prev,
-.carousel-control-next{
+#popular .carousel-control-prev,
+#popular .carousel-control-next,
+#movie .carousel-control-prev,
+#movie .carousel-control-next{
     opacity: 1 !important;
+    width: fit-content;
+    height: fit-content;
+    top: 40%;
 }
+
+#popular .carousel-control-prev,
+#movie .carousel-control-prev{
+    left: 5%;
+}
+
+#popular .carousel-control-next,
+#movie .carousel-control-next{
+    right: 5%;
+}
+
+
 
 .carousel button span i{
     font-size: 3rem; 

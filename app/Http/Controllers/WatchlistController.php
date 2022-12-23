@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use App\Models\Watchlist;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class WatchlistController extends Controller
@@ -16,17 +17,21 @@ class WatchlistController extends Controller
      */
     public function index(){
         $my_watchlist = Watchlist::with('movie')
-                ->where('user_id', auth()->user()->id)
-                ->get();
+                ->where('user_id', auth()->user()->id);
 
         if(request('filter_status') && request('filter_status') != 'all'){
-            $my_watchlist = Watchlist::with('movie')
-                ->where('user_id', auth()->user()->id)
-                ->where('status', request('filter_status'))
-                ->get();
+            $my_watchlist = $my_watchlist
+                ->where('status', request('filter_status'));
+        }
+
+        if(request('search_watchlist') && request('search_watchlist') != ''){
+            
+            $my_watchlist = $my_watchlist->whereHas('movie', function(Builder $query){
+                $query->where('title', 'like', '%'. request('search_watchlist') . '%');
+            });
         }
         
-        return view('watchlists.index', compact('my_watchlist'));
+        return view('watchlists.index', ['my_watchlist' => $my_watchlist->paginate(4)]);
     }
 
 
@@ -44,7 +49,7 @@ class WatchlistController extends Controller
             'movie_id' => $request->movie_id
         ]);
 
-        return redirect('/movies')->with('message', $request->movie_title . ' has been added to watchlist!');
+        return back()->with('message', $request->movie_title . ' has been added to watchlist!');
 
     }
 
@@ -63,21 +68,19 @@ class WatchlistController extends Controller
             Watchlist::where('id', $id)
             ->update(['status' => $request->status]);
 
-            return redirect('/watchlists')->with('message', 
+            return back()->with('message', 
                 $request->movie_title . '\'s status has been changed to ' . $request->status
             );
         }
 
         Watchlist::destroy($id);
 
-        return redirect('/watchlists')->with('message', 
-            $request->movie_title . ' has been removed from watchlist'
-        );
+        return back()->with('message', $request->movie_title . ' has been removed from watchlist');
 
     }
 
 
-    /**
+        /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -86,10 +89,9 @@ class WatchlistController extends Controller
     public function destroy(Request $request, $id)
     {
         //
-        Watchlist::where('user_id', auth()->user()->id)
-                    ->where('movie_id', $id)
-                    ->delete();
-        
-        return redirect('/movies')->with('message', $request->movie_title . ' has been removed from watchlist!');
+        Watchlist::destroy($id);
+
+        return back()->with('message', ucwords($request->movie_title) . ' has been removed from watchlist!');
     }
+
 }

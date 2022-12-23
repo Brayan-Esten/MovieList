@@ -5,18 +5,34 @@
 
 #genre .carousel-item{
     display: block;
-    flex: 0 0 10%;
-    margin: 0 .5em;
+    flex: 0 0 15%;
+    margin: 0 .6em;
 }
 
-.genre-card{
-    height: auto;
-    background-color: var(--grey);
-    border-radius: 10px;
+#genre .carousel-control-prev,
+#genre .carousel-control-next{
+    width: fit-content;
+    height: fit-content;
+    top: 30%;
 }
 
+#genre .carousel-control-prev{
+    left: 2%;
+}
+
+#genre .carousel-control-next{
+    right: 2%;
+}
+
+.genre-card,
 .sort-option{
     height: auto;
     background-color: var(--grey);
     border-radius: 10px;
+    transition: .6s;
+}
+
+.genre-card:hover,
+.sort-option:hover{
+    background-color: var(--red);
 }

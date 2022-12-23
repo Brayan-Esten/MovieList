@@ -16,7 +16,13 @@ class ActorController extends Controller
     public function index()
     {
         //
-        $actors = Actor::with('movies')->get();
+        $actors = Actor::with('movies');
+
+        if(request('search_actor') && request('search_actor') != ''){
+            $actors = $actors->where('name', 'like', '%'. request('search_actor') .'%');
+        }
+
+        $actors = $actors->get();
         return view('actors.index', compact('actors'));
     }
 
@@ -56,7 +62,7 @@ class ActorController extends Controller
 
         Actor::create($validated);
 
-        return redirect('/movies')->with('message', 'New actor added!');
+        return redirect('/actors')->with('message', 'New actor added!');
     }
 
     /**
@@ -113,7 +119,7 @@ class ActorController extends Controller
 
         Actor::where('id', $id)->update($validated);
 
-        return redirect('/movies')->with('message', ucwords($request->name) . ' has been updated!');
+        return redirect('/actors')->with('message', ucwords($request->name) . ' has been updated!');
     }
 
     /**
@@ -127,10 +133,10 @@ class ActorController extends Controller
         //
         Actor::destroy($actor->id);
 
-        // if($actor->image_url){
-        //     Storage::delete($actor->image_url);
-        // }
+        if($actor->image_url){
+            Storage::delete($actor->image_url);
+        }
 
-        return redirect('/movies')->with('message', ucwords($actor->name) . ' has been removed!');
+        return redirect('/actors')->with('message', ucwords($actor->name) . ' has been removed!');
     }
 }

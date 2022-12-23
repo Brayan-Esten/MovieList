@@ -1,13 +1,6 @@
 @extends('layouts.template')
 @section('content')
 
-    @if(session()->has('message'))
-        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
-            {{ session('message') }}
-            <button type="button" class="text-light btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
     <div class="my-5">
 
         <div class="section-header p-3">
@@ -16,16 +9,18 @@
             </h4>
         </div>
 
-        <form action="/watchlist" class="mt-5 w-75 mx-auto">
+        {{-- search bar --}}
+        <form action="/watchlists" class="mt-5 w-75 mx-auto">
                     
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search your watchlist" name="search"
-                value="{{ request('search') }}">
+                <input type="text" class="form-control" placeholder="Search your watchlist" name="search_watchlist"
+                value="{{ request('search_watchlist') ? request('search_watchlist') : ''}}">
                 <button class="btn btn-primary" type="submit">Search</button>
             </div>
 
         </form>
 
+        {{-- filter status --}}
         <form id="filter_status" action="/watchlists" class="mt-3 w-75 mx-auto text-muted my-input" style="font-size: 1.2rem">
             <i class="bi bi-funnel-fill" style="margin-right: 1rem"></i>
             <select class="form-select d-inline-block" style="width: 15%" 
@@ -115,6 +110,14 @@
                 </div>
             @endforeach
 
+        </div>
+
+        <div class="pagination-links mt-5 d-flex justify-content-between">
+            <p class="text-muted">
+                Showing {{ $my_watchlist->firstItem() }} to {{ $my_watchlist->lastItem() }}
+                of total {{$my_watchlist->total()}} entries
+            </p>
+            {{ $my_watchlist->withQueryString()->links() }}
         </div>
     </div>
 

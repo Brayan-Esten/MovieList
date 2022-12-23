@@ -25,4 +25,8 @@ class Movie extends Model
         return $this->belongsToMany(User::class)->using(Watchlist::class);
     }
 
+    public function watchlists(){
+        return $this->hasMany(Watchlist::class);
+    }
+
 }

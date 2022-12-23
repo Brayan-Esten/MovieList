@@ -39,7 +39,7 @@
                             <span class="input-group-text">Email</span>
                             <input type="email" id="email" name="email" placeholder="Enter your email" autofocus
                                 class="form-control @error('email') is-invalid @enderror" 
-                                value={{ old('email') }}>
+                                value={{ old('email', Cookie::get('email'))}}>
                             @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -51,10 +51,18 @@
                         <div class="input-group has-validation d-flex mb-3">
                             <span class="input-group-text">Password</span>
                             <input type="password" id="password" name="password" placeholder="Enter your password"
-                                class="form-control" >
+                            class="form-control" value="{{ Cookie::get('password') }}">
                         </div>
 
-                        <button class="my-button btn btn-primary w-100 mt-3" type="submit">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="halo" id="flexCheckDefault"
+                            name="remember_me">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Remember Me
+                            </label>
+                        </div>
+
+                        <button class="my-button btn btn-primary w-100" type="submit">
                             Login <i class="bi bi-box-arrow-in-right"></i>
                         </button>
 

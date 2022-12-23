@@ -11,11 +11,11 @@
             
             <div class="w-50 d-flex justify-content-end">
 
-                <form action="" class="mx-3">
+                <form action="/actors" class="mx-3">
                     
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for actor ..." name="search"
-                        value="{{ request('search') }}">
+                        <input type="text" class="form-control" placeholder="Search for actor ..." name="search_actor"
+                        value="{{ request('search_movie') ? request('search_movie') : '' }}">
                         <button class="btn btn-primary" type="submit">Search</button>
                     </div>
 
@@ -31,34 +31,41 @@
             </div>
         </div>
             
-        <div class="mx-auto p-3 d-flex flex-wrap" style="width: 96%">
+        @if($actors->count() != 0)
+            <div class="mx-auto p-3 d-flex flex-wrap" style="width: 96%">
 
-            @foreach ($actors as $a)
-            <div class="cast-card m-4">
-                <a href="/actors/{{ $a->id }}">
-                    <div class="card">
-                        <img class="actor-thumbnail card-img-top img-fluid" loading="lazy"
-                        src="{{ asset('storage/' . $a->image_url) }}" alt="...">
-                        <div class="card-body rounded-bottom">
-                            <p class="card-title text-light fw-bold text-truncate" style="font-size: 1.1rem">
-                                {{ $a->name }}
-                            </p>
-                            <small class="card-text text-light d-block text-truncate">
-                                @foreach ($a->movies as $m)
-                                    @if ($loop->first)
-                                        {{ $m->title }}
-                                    @else
-                                        {{ ', ' . $m->title}}
-                                    @endif
-                                @endforeach
-                            </small>
+                @foreach ($actors as $a)
+                <div class="cast-card m-4">
+                    <a href="/actors/{{ $a->id }}">
+                        <div class="card">
+                            <img class="actor-thumbnail card-img-top img-fluid" loading="lazy"
+                            src="{{ asset('storage/' . $a->image_url) }}" alt="...">
+                            <div class="card-body rounded-bottom">
+                                <p class="card-title text-light fw-bold text-truncate" style="font-size: 1.1rem">
+                                    {{ $a->name }}
+                                </p>
+                                <small class="card-text text-light d-block text-truncate">
+                                    @foreach ($a->movies as $m)
+                                        @if ($loop->first)
+                                            {{ $m->title }}
+                                        @else
+                                            {{ ', ' . $m->title}}
+                                        @endif
+                                    @endforeach
+                                </small>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            @endforeach
+                    </a>
+                </div>
+                @endforeach
 
-        </div>
+            </div>
+        @else
+            <div class="no-result text-muted">
+                <i class="bi bi-emoji-frown" style="font-size: 10rem"></i>
+                <h4>No Results Found</h4>
+            </div>
+        @endif
 
     </div>
 

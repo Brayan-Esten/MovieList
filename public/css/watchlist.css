@@ -1,0 +1,8 @@
+.pagination-links{
+    width: 90%;
+    margin: auto;
+}
+
+.pagination-links nav{
+    background-color: var(--black);
+}

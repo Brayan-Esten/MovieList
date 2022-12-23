@@ -2,13 +2,6 @@
 
 @section('content')
 
-    @if(session()->has('message'))
-        <div class="alert alert-success alert-dismissible fade show w-100 text-center m-auto" role="alert">
-            {{ session('message') }}
-            <button type="button" class="text-light btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
     {{-- hero section --}}
 
     <div id="hero" class="carousel slide" data-bs-ride="carousel">
@@ -22,13 +15,13 @@
 
         <div class="carousel-inner">
 
-            @foreach ($carousels as $c)
+            @foreach ($heroes as $h)
                 <div class="hero carousel-item @if($loop->first) active @endif" data-bs-interval="5000">
                     <div class="position-relative">
                         <div class="my-overlay">
                             <div class="my-info text-light d-flex flex-column">
                                 <p>
-                                    @foreach($c->genres as $g)
+                                    @foreach($h->genres as $g)
 
                                         @if(!$loop->last)
                                             {{ $g->type . ', ' }}
@@ -40,19 +33,19 @@
                                     
                                     | 
                                     
-                                    {{ $c->release_date }}
+                                    {{ $h->release_date }}
                                 </p>
-                                <h1 style="font-weight: 700;">{{ $c->title }}</h1>
+                                <h1 style="font-weight: 700;">{{ $h->title }}</h1>
                                 <p style="font-size: .9rem">
-                                    {{ $c->description }}
+                                    {{ $h->description }}
                                 </p>
 
                                 @can('user')
-                                @if ($watchlist->contains($c->id))
-                                    <form class="d-inline" action="/watchlists/{{ $c->id }}" method="post">
+                                @if ($watchlist->contains($h->id))
+                                    <form class="d-inline" action="/watchlists/{{ $h->id }}" method="post">
                                         @method('delete')
                                         @csrf
-                                        <input type="hidden" name="movie_title" value="{{ $c->title }}">
+                                        <input type="hidden" name="movie_title" value="{{ $h->title }}">
                                         <button class="my-button btn btn-primary w-50">
                                             <i class="bi bi-trash"></i>
                                             Remove from Watchlist
@@ -61,8 +54,8 @@
                                 @else
                                     <form class="d-inline" action="/watchlists" method="post">
                                         @csrf
-                                        <input type="hidden" name="movie_id" value="{{ $c->id }}">
-                                        <input type="hidden" name="movie_title" value="{{ $c->title }}">
+                                        <input type="hidden" name="movie_id" value="{{ $h->id }}">
+                                        <input type="hidden" name="movie_title" value="{{ $h->title }}">
                                         <button class="my-button btn btn-primary w-50">
                                             <i class="bi bi-plus"></i>
                                             Add to Watchlist
@@ -72,7 +65,7 @@
                                 @endcan
                             </div>
                         </div>
-                        <img src="{{ asset('storage/' .  $c->background_url) }}" class="d-block w-100" alt="..." loading="lazy">
+                        <img src="{{ asset('storage/' .  $h->background_url) }}" class="d-block w-100" alt="..." loading="lazy">
                     </div>
                 </div>  
             @endforeach
@@ -143,29 +136,31 @@
 
     {{-- all movies section --}}
 
-    <div class="mt-4">
+    <div class="mt-4" id="movies_section">
 
+        {{-- by title --}}
         <div class="section-header p-3 d-flex justify-content-between">
             <h4 class="text-light ms-2">
                 Shows
             </h4>
             
-            <form action="/" class="w-25">
+            <form action="/movies#movies_section" class="w-25">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for movies ..." name="search"
-                        value="{{ request('search') }}">
+                    <input type="text" class="form-control" placeholder="Search for movies ..." name="search_movie"
+                        value="{{ request('search_movie') ? request('search_movie') : '' }}">
                     <button class="btn btn-primary" type="submit">Search</button>
                 </div>
             </form>
         </div>
 
+        {{-- by genre --}}
         <div id="genre" class="carousel slide" data-bs-interval="false">
     
-            <div class="carousel-inner p-4">
+            <div class="carousel-inner p-4 w-75 mx-auto">
     
                 @foreach($genres as $g)
                 <div class="carousel-item @if($loop->first) active @endif">
-                    <a href="#">
+                    <a href="/movies?genre={{ $g->type }}#movies_section">
                         <div class="genre-card text-light text-center p-2">
                             {{ $g->type }}
                         </div>
@@ -186,21 +181,22 @@
     
         </div>
 
+        {{-- by sort order --}}
         <div class="sort p-4 text-light d-flex justify-content-between align-items-center">
 
-            <div class="d-flex justify-content-evenly align-items-center w-25">
-                <span>Sort by</span>
-                <a href="">
+            <div class="d-flex justify-content-evenly align-items-center">
+                <span style="margin-right: 2em">Sort by</span>
+                <a href="/movies?sort=latest#movies_section" style="width: 100px" class="mx-2">
                     <div class="sort-option text-light text-center p-2">
                         Latest
                     </div>
                 </a>
-                <a href="">
+                <a href="/movies?sort=ascending#movies_section" style="width: 100px" class="mx-2">
                     <div class="sort-option text-light text-center p-2">
                         A-Z
                     </div>
                 </a>
-                <a href="">
+                <a href="/movies?sort=descending#movies_section" style="width: 100px" class="mx-2">
                     <div class="sort-option text-light text-center p-2">
                         Z-A
                     </div>
@@ -216,51 +212,59 @@
 
         </div>
 
-        <div id="movie" class="carousel slide" data-bs-interval="false">
-    
-            <div class="carousel-inner p-4">
-    
-                @foreach($movies as $m)
-                <div class="carousel-item @if($loop->first) active @endif">
-                    <div class="card">
-                        <a href="/movies/{{ $m->id }}">
-                            <img class="movie-thumbnail" src="{{ asset('storage/' . $m->thumbnail_url) }}" alt="..." loading="lazy">
-                        </a>
-                        <div class="card-body">
-                            <p class="card-title text-light text-left text-truncate">{{ $m->title }}</p>
-                            <div class="d-flex justify-content-between">
-                                <small class="card-text text-muted">{{ date('Y', strtotime($m->release_date)) }}</small>
-                                @can('user')
-                                @if ($watchlist->contains($m->id))
-                                    <i class="bi bi-check text-muted" style="font-size: 1.2rem"></i>
-                                @else
-                                    <form class="d-inline" action="/watchlists" method="post">
-                                        @csrf
-                                        <input type="hidden" name="movie_id" value="{{ $m->id }}">
-                                        <input type="hidden" name="movie_title" value="{{ $m->title }}">
-                                        <button style="font-size: 1.2rem; border: none; background: transparent">
-                                            <i class="bi bi-plus-lg"></i>
-                                        </button>
-                                    </form>
-                                @endif
-                                @endcan
+        @if($movies->count() != 0)
+            <div id="movie" class="carousel slide" data-bs-interval="false">
+        
+                <div class="carousel-inner p-4">
+        
+                    @foreach($movies as $m)
+                    <div class="carousel-item @if($loop->first) active @endif">
+                        <div class="card">
+                            <a href="/movies/{{ $m->id }}">
+                                <img class="movie-thumbnail" src="{{ asset('storage/' . $m->thumbnail_url) }}" alt="..." loading="lazy">
+                            </a>
+                            <div class="card-body">
+                                <p class="card-title text-light text-left text-truncate">{{ $m->title }}</p>
+                                <div class="d-flex justify-content-between">
+                                    <small class="card-text text-muted">{{ date('Y', strtotime($m->release_date)) }}</small>
+                                    @can('user')
+                                    @if ($watchlist->contains($m->id))
+                                        <i class="bi bi-check text-muted" style="font-size: 1.2rem"></i>
+                                    @else
+                                        <form class="d-inline" action="/watchlists" method="post">
+                                            @csrf
+                                            <input type="hidden" name="movie_id" value="{{ $m->id }}">
+                                            <input type="hidden" name="movie_title" value="{{ $m->title }}">
+                                            <button style="font-size: 1.2rem; border: none; background: transparent">
+                                                <i class="bi bi-plus-lg"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                    @endcan
+                                </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
+        
                 </div>
-                @endforeach
-    
+                
+                <button class="carousel-control-prev" type="button" data-bs-slide="prev">
+                    <span><i class="bi bi-arrow-left-square-fill"></i></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-slide="next">
+                    <span><i class="bi bi-arrow-right-square-fill"></i></span>
+                </button>
+        
             </div>
-            
-            <button class="carousel-control-prev" type="button" data-bs-slide="prev">
-                <span><i class="bi bi-arrow-left-square-fill"></i></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-slide="next">
-                <span><i class="bi bi-arrow-right-square-fill"></i></span>
-            </button>
-    
-        </div>
+        @else
 
+            <div class="no-result text-muted">
+                <i class="bi bi-emoji-frown" style="font-size: 10rem"></i>
+                <h4>No Results Found</h4>
+            </div>
+
+        @endif
 
     </div>
 

@@ -10,6 +10,8 @@ use App\Models\Character;
 use App\Models\GenreMovie;
 use App\Models\Watchlist;
 use Illuminate\Auth\Middleware\Authorize;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
@@ -22,8 +24,8 @@ class MovieController extends Controller
 
     public function index()
     {
-
-        $movies = Movie::with('genres')->get();
+        // init
+        $movies = Movie::with('genres');
 
         $temp = null;
         $watchlist = collect();
@@ -38,18 +40,48 @@ class MovieController extends Controller
             }
             
         } 
-
+    
         $genres = Genre::all();
+        $heroes = $movies->get()->random(3);
 
-        $carousels = $movies->random(3);
+        $populars = Movie::withCount('watchlists')
+                    ->orderBy('watchlists_count', 'desc')
+                    ->get();
+                    
 
-        $populars = $movies->sortByDesc('release_date');
-
-        if(auth()->user()){
-            return view('movies.index', compact('movies', 'watchlist', 'carousels', 'populars', 'genres'));
+        // specific request
+        if(request('search_movie') && request('search_movie') != ''){
+            $movies = $movies->where('title', 'like', '%'. request('search_movie') .'%');
         }
 
-        return view('movies.index', compact('movies', 'carousels', 'populars', 'genres'));
+        if(request('genre')){
+            $movies = $movies->whereHas('genres', function(Builder $query){
+                $query->where('type', 'like', '%'. request('genre') .'%');
+            });
+        }
+
+        if(request('sort') == 'latest'){
+            $movies = $movies->orderBy('release_date', 'desc');
+        }
+
+        if(request('sort') == 'ascending'){
+            $movies = $movies->orderBy('title', 'asc');
+        }
+
+        if(request('sort') == 'descending'){
+            $movies = $movies->orderBy('title', 'desc');
+        }
+
+
+
+        // finally
+        $movies = $movies->get();
+
+        if(auth()->user()){
+            return view('movies.index', compact('movies', 'watchlist', 'heroes', 'populars', 'genres'));
+        }
+
+        return view('movies.index', compact('movies', 'heroes', 'populars', 'genres'));
     }
 
     /**

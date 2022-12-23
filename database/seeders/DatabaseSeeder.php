@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Watchlist;
 use Illuminate\Database\Seeder;
 
 
@@ -22,7 +23,8 @@ class DatabaseSeeder extends Seeder
             GenreSeeder::class,
             GenreMovieSeeder::class,
             ActorSeeder::class,
-            CharacterSeeder::class
+            CharacterSeeder::class,
+            WatchlistSeeder::class
         ]);
     }
 }

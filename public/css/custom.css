@@ -34,7 +34,11 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #bbb; 
+    background: #bbb; 
+}
+
+html{
+    scroll-behavior: smooth;
 }
 
 body {
@@ -78,4 +82,9 @@ img{
     top: 0;
     width: 10px;
     height: 100%;
+}
+
+.no-result{
+    display: grid;
+    place-items: center;
 }
