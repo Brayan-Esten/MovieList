@@ -2,8 +2,8 @@
 
 @section('content')
 
-    {{-- hero section --}}
 
+    {{-- hero section --}}
     <div id="hero" class="carousel slide" data-bs-ride="carousel">
 
         <div class="carousel-indicators">
@@ -33,7 +33,7 @@
                                     
                                     | 
                                     
-                                    {{ $h->release_date }}
+                                    {{ date('Y', strtotime($h->release_date)) }}
                                 </p>
                                 <h1 style="font-weight: 700;">{{ $h->title }}</h1>
                                 <p style="font-size: .9rem">
@@ -42,15 +42,10 @@
 
                                 @can('user')
                                 @if ($watchlist->contains($h->id))
-                                    <form class="d-inline" action="/watchlists/{{ $h->id }}" method="post">
-                                        @method('delete')
-                                        @csrf
-                                        <input type="hidden" name="movie_title" value="{{ $h->title }}">
-                                        <button class="my-button btn btn-primary w-50">
-                                            <i class="bi bi-trash"></i>
-                                            Remove from Watchlist
-                                        </button>
-                                    </form>
+                                    <div class="my-button btn btn-primary w-50">
+                                        <i class="bi bi-check"></i>
+                                        Already in Watchlist
+                                    </div>
                                 @else
                                     <form class="d-inline" action="/watchlists" method="post">
                                         @csrf
@@ -76,7 +71,6 @@
 
 
     {{-- popular section --}}
-
     <div class="mt-4">
         
         <div class="section-header p-3">
@@ -133,9 +127,7 @@
     </div>
 
 
-
     {{-- all movies section --}}
-
     <div class="mt-4" id="movies_section">
 
         {{-- by title --}}
@@ -144,7 +136,7 @@
                 Shows
             </h4>
             
-            <form action="/movies#movies_section" class="w-25">
+            <form action="/movies#movies_section" method="GET" class="w-25">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for movies ..." name="search_movie"
                         value="{{ request('search_movie') ? request('search_movie') : '' }}">
@@ -258,12 +250,10 @@
         
             </div>
         @else
-
             <div class="no-result text-muted">
                 <i class="bi bi-emoji-frown" style="font-size: 10rem"></i>
                 <h4>No Results Found</h4>
             </div>
-
         @endif
 
     </div>

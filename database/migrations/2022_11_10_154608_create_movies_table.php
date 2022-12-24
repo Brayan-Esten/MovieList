@@ -18,14 +18,13 @@ class CreateMoviesTable extends Migration
 
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('director');
             $table->date('release_date');
             $table->string('thumbnail_url');
             $table->string('background_url');
 
             $table->timestamps();
-
         });
     }
 

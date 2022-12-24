@@ -25,7 +25,6 @@ class CreateActorsTable extends Migration
             $table->unsignedInteger('popularity');
 
             $table->timestamps();
-
         });
     }
 

@@ -26,28 +26,13 @@ class MovieController extends Controller
     {
         // init
         $movies = Movie::with('genres');
-
-        $temp = null;
-        $watchlist = collect();
-
-        if(auth()->user()){
-            $temp =  Watchlist::select('movie_id')
-                                ->where('user_id', auth()->user()->id)
-                                ->get();
-
-            foreach($temp as $t){
-                $watchlist->push($t->movie_id);
-            }
-            
-        } 
-    
         $genres = Genre::all();
-        $heroes = $movies->get()->random(3);
 
+        $heroes = $movies->get()->random(3);
         $populars = Movie::withCount('watchlists')
-                    ->orderBy('watchlists_count', 'desc')
-                    ->get();
-                    
+                            ->orderBy('watchlists_count', 'desc')
+                            ->get();
+
 
         // specific request
         if(request('search_movie') && request('search_movie') != ''){
@@ -77,7 +62,19 @@ class MovieController extends Controller
         // finally
         $movies = $movies->get();
 
-        if(auth()->user()){
+
+        // if user role
+        if(!auth()->user()->is_admin){
+
+            $watchlist = collect();
+            $temp =  Watchlist::select('movie_id')
+                                ->where('user_id', auth()->user()->id)
+                                ->get();
+
+            foreach($temp as $t){
+                $watchlist->push($t->movie_id);
+            } 
+
             return view('movies.index', compact('movies', 'watchlist', 'heroes', 'populars', 'genres'));
         }
 
@@ -92,7 +89,6 @@ class MovieController extends Controller
     public function create()
     {
         //
-        // dd('lol');
         $genres = Genre::all();
         $actors = Actor::all();
         return view('movies.create', compact('genres', 'actors'));
@@ -142,29 +138,22 @@ class MovieController extends Controller
 
         //
 
-        $genres_size = sizeof($request->genres);
-
-        for($i = 0; $i < $genres_size; $i++){
-
+        foreach($request->genres as $g){
             GenreMovie::create([
                 'movie_id' => $latest_movie->id,
-                'genre_id' => $validated['genres'][$i]
+                'genre_id' => $g
             ]);
-
         }
 
         //
 
-        $actors_size = sizeof($request->actors);
-
-        for($i = 0; $i < $actors_size; $i++){
-            
+        $size = sizeof($request->characters);
+        for($i = 0; $i < $size; $i++){
             Character::create([
                 'movie_id' => $latest_movie->id,
                 'actor_id' => $validated['actors'][$i],
                 'name' => $validated['characters'][$i]
             ]);
-
         }
 
         return redirect('/movies')->with('message', 'New movie added!');
@@ -218,11 +207,11 @@ class MovieController extends Controller
 
         //
         $genre_movie = collect();
-        $temp1 = GenreMovie::select('genre_id')
+        $temp = GenreMovie::select('genre_id')
                     ->where('movie_id', $movie->id)
                     ->get();
 
-        foreach($temp1 as $t1) $genre_movie->push($t1->genre_id);
+        foreach($temp as $t) $genre_movie->push($t->genre_id);
         
         //
         $characters = Character::where('movie_id', $movie->id)->get();
@@ -257,6 +246,7 @@ class MovieController extends Controller
 
         if($request->file('thumbnail_url')){
             $validated['thumbnail_url'] = $request->file('thumbnail_url')->store('img/thumbnails');
+            Storage::delete($request->old_thumbnail_url);
         }
         else{
             $validated['thumbnail_url'] = $request->old_thumbnail_url;
@@ -266,6 +256,7 @@ class MovieController extends Controller
 
         if($request->file('background_url')){
             $validated['background_url'] = $request->file('background_url')->store('img/backgrounds');
+            Storage::delete($request->old_background_url);
         }
         else{
             $validated['background_url'] = $request->old_background_url;
@@ -285,35 +276,28 @@ class MovieController extends Controller
 
         GenreMovie::where('movie_id', $id)->delete();
 
-        $genres_size = sizeof($request->genres);
-
-        for($i = 0; $i < $genres_size; $i++){
-
+        foreach($request->genres as $g){
             GenreMovie::create([
                 'movie_id' => $id,
-                'genre_id' => $validated['genres'][$i]
+                'genre_id' => $g
             ]);
-
         }
 
         // 
 
         Character::where('movie_id', $id)->delete();
 
-        $actors_size = sizeof($request->actors);
+        $size = sizeof($request->characters);
 
-        for($i = 0; $i < $actors_size; $i++){
-            
+        for($i = 0; $i < $size; $i++){
             Character::create([
                 'movie_id' => $id,
                 'actor_id' => $validated['actors'][$i],
                 'name' => $validated['characters'][$i]
             ]);
-
         }
 
         return redirect('/movies')->with('message', ucwords($request->title) . ' has been updated!');
-
     }
 
     /**
@@ -325,8 +309,6 @@ class MovieController extends Controller
     public function destroy(Movie $movie)
     {
         //
-
-        // dd($movie->title);
         Movie::destroy($movie->id);
         
         if($movie->thumbnail_url){
@@ -334,7 +316,7 @@ class MovieController extends Controller
         }
         
         if($movie->background_url){
-            Storage::delete($movie->bakground_url);
+            Storage::delete($movie->background_url);
         }
 
         return redirect('/movies')->with('message', ucwords($movie->title) . ' has been removed!');

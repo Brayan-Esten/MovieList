@@ -60,7 +60,7 @@
                         <div class="input-group has-validation d-flex mb-3">
                             <span class="input-group-text">Confirm Password</span>
                             <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password"
-                                class="form-control @error('password') is-invalid @enderror">
+                                class="form-control @error('password_confirmation') is-invalid @enderror">
                             @error('password_confirmation')
                                 <div class="invalid-feedback">
                                     {{ $message }}

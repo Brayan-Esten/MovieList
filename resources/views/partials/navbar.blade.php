@@ -17,9 +17,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         
             <ul class="navbar-nav d-flex justify-content-around ms-auto" style="width: 67%;">
-                <li class="nav-item active">
+                {{-- <li class="nav-item active">
                     <a class="nav-link" href="/">Home</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link" href="/movies">Movies</a>
                 </li>

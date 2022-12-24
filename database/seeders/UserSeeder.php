@@ -22,7 +22,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('root'),
             'dob' => '2002-03-12',
             'phone' => '08123456789',
-            'date_joined' => date('Y-m-d', time()),
             'is_admin' => true
         ]);
 
@@ -34,8 +33,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('root'),
             'dob' => '2002-01-01',
             'phone' => '08123456789',
-            'date_joined' => date('Y-m-d', time()),
-            'is_admin' => false
         ]);
 
 
@@ -44,10 +41,8 @@ class UserSeeder extends Seeder
             'username' => 'calvin',
             'email' => 'calvin@gmail.com',
             'password' => Hash::make('root'),
-            'dob' => '2002-01-01',
+            'dob' => '2002-02-02',
             'phone' => '08123456789',
-            'date_joined' => date('Y-m-d', time()),
-            'is_admin' => false
         ]);
 
 
@@ -56,10 +51,8 @@ class UserSeeder extends Seeder
             'username' => 'jason',
             'email' => 'jason@gmail.com',
             'password' => Hash::make('root'),
-            'dob' => '2002-01-01',
+            'dob' => '2002-03-03',
             'phone' => '08123456789',
-            'date_joined' => date('Y-m-d', time()),
-            'is_admin' => false
         ]);
 
     }

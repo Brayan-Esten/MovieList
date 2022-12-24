@@ -10,9 +10,7 @@ class RegisterController extends Controller
 {
     // return register page
     public function index(){
-        return view('register', [
-            'title' => 'Register'
-        ]);
+        return view('register');
     }
 
 
@@ -31,6 +29,6 @@ class RegisterController extends Controller
 
         User::create($validated);
         
-        return redirect('/login')->with('success', 'Registration success! Please log in');
+        return redirect('/login')->with('success', 'Registration success! Please login');
     }
 }

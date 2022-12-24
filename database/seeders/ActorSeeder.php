@@ -174,5 +174,109 @@ class ActorSeeder extends Seeder
 
         ]);
         
+
+        Actor::create([
+            'name' => 'Jennifer Connelly',
+            'gender' => 'female',
+
+            'biography' => "Jennifer Lynn Connelly was born on December 12, 1970, in Cairo, New York. After graduating from high school, Connelly studied English literature at Yale University in 1988. She has described herself as a conscientious student who wasn't really concerned with having a social life or sleeping or eating much.\" I was really nerdy and pretty much stayed in the law-school library, which is open 24 hours, most of the time I wasn't in class\". After two years at Yale, Connelly transferred to Stanford University to study drama. There, she trained with Roy London, Howard Fine, and Harold Guskin. Encouraged by her parents to continue with her film career, Connelly left college and returned to the movie industry the same year.",
+            
+            'dob' => '1970-12-12',
+            'pob' => 'Catskill Mountains, New York, USA',
+            'image_url' => '/img/actors/jennifer-connelly.jpg',
+            'popularity' => 0
+
+        ]);
+
+        Actor::create([
+            'name' => 'Miles Teller',
+            'gender' => 'male',
+
+            'biography' => "Teller was born in Pennsylvania to parents Merry, a real estate agent, and Michael, a nuclear power plant engineer. He has two older sisters, Erin and Dana. His paternal grandfather was of Russian Jewish descent, and his ancestry also includes English and Irish forebears. Teller spent his early years in Pennsylvania and Delaware before his family moved to Citrus County, Florida, at age twelve. Growing up, he was involved with acting, was president of his high school's drama club, and played alto saxophone, drums, piano, and guitar. He also played baseball competitively and had dreams of turning professional. He graduated from Lecanto High School in Lecanto, Florida. Subsequently, he attended the New York University Tisch School of the Arts; there, he studied method acting at the Lee Strasberg Theatre and Film Institute and screen acting with Stonestreet Studios. He earned a BFA in drama in 2009.",
+            
+            'dob' => '1987-02-20',
+            'pob' => 'Downingtown, Pennsylvania, USA',
+            'image_url' => '/img/actors/miles-teller.jpg',
+            'popularity' => 0
+
+        ]);
+
+        Actor::create([
+            'name' => 'Dwayne Johnson',
+            'gender' => 'male',
+
+            'biography' => "Johnson was born in Hayward, California on May 2, 1972, the son of Ata Johnson (née Maivia; born 1948) and former professional wrestler Rocky Johnson (born Wayde Douglas Bowles; 1944–2020). Growing up, Johnson lived briefly in Grey Lynn in Auckland, New Zealand with his mother's family, where he played rugby and attended Richmond Road Primary School before returning to the U.S. Johnson's father was a Black Nova Scotian with a small amount of Irish ancestry. His mother is Samoan. His father and tag team partner Tony Atlas were the first black tag team champions in WWE history, in 1983. His mother is the adopted daughter of Peter Maivia, who was also a professional wrestler. Johnson's maternal grandmother Lia was the first female pro wrestling promoter, taking over Polynesian Pacific Pro Wrestling after her husband's death in 1982 and managing it until 1988. Through his maternal grandfather Maivia, Johnson is a non-blood relative to the Anoa'i wrestling family. In 2008, Johnson inducted his father and grandfather into the WWE Hall of Fame.",
+            
+            'dob' => '1972-05-02',
+            'pob' => 'Hayward, California, USA',
+            'image_url' => '/img/actors/dwayne-johnson.jpg',
+            'popularity' => 0
+
+        ]);
+
+        Actor::create([
+            'name' => 'Aldis Hodge',
+            'gender' => 'male',
+
+            'biography' => "Hodge was born on September 20, 1986, in Onslow County, North Carolina. Both of his parents, Aldis Basil Hodge and Yolette Evangeline Richardson, served in the U.S. Marine Corps. Hodge's mother is from Florida, while his father is originally from Dominica. Aldis is the younger brother of actor Edwin Hodge. Hodge played both the clarinet and the violin as a child, but as an adult, his focus is on the violin; he purchased his first at the age of 18. In addition to acting, Hodge designs watches, writes, and paints. In 2007, Hodge was awarded the role of Alec Hardison in the TNT series Leverage on the day of his 21st birthday. In 2009, he received a Saturn Award nomination for Best Supporting Actor on Television for this role.",
+            
+            'dob' => '1986-09-20',
+            'pob' => 'Onslow County, North Carolina, USA',
+            'image_url' => '/img/actors/aldis-hodge.jpg',
+            'popularity' => 0
+
+        ]);
+
+        Actor::create([
+            'name' => 'Pierce Brosnan',
+            'gender' => 'male',
+
+            'biography' => "Brosnan was born on 16 May 1953 in Drogheda, County Louth, the only child of May (née Smith) and carpenter Thomas Brosnan. He has the same name as his grandfather, Pierce Brosnan, who in turn was named after his parents' surnames: John Brosnan and Margaret Pierce.[better source needed] For 12 years, he lived in Navan, County Meath, and said in 1999 that he considers it to be his hometown. His father abandoned the family when Brosnan was an infant. When he was four years old, his mother moved to London to work as a nurse. From that point on, he was largely brought up by his maternal grandparents, Philip and Kathleen Smith. After their deaths, he lived with an aunt and then an uncle, but was subsequently sent to live in a boarding house run by a woman named Eileen. He later said, \"Childhood was fairly solitary. I never knew my father. He left when I was an infant. To be Irish Catholic in the 1950s, and have a marriage which was not there, a father who was not there  the mother, the wife suffered greatly. My mother was very courageous. She took the bold steps to go away and be a nurse in England. Basically wanting a better life for her and myself. My mother came home once a year, twice a year.\"",
+            
+            'dob' => '953-05-16',
+            'pob' => 'Drogheda, County Louth, Ireland',
+            'image_url' => '/img/actors/pierce-brosnan.jpg',
+            'popularity' => 0
+
+        ]);
+
+        Actor::create([
+            'name' => 'Allison Janney',
+            'gender' => 'female',
+
+            'biography' => "Janney was born on November 19, 1959, in Boston, Massachusetts, and raised in Dayton, Ohio. She attended the Miami Valley School in Dayton, where she was named a distinguished alumna in 2005, and the Hotchkiss School in Connecticut, where she was named Alumna of the Year in 2016. Janney initially aspired to a career in figure skating, but her tall stature and a freak accident when she was a teenager put an end to that dream. She attended Kenyon College in Gambier, Ohio, where she majored in theatre. During her freshman year, Janney met actors Paul Newman and Joanne Woodward at a play for the inaugural event of the college's newly built Bolton Theater, which Newman was directing. The couple encouraged her to continue acting and offered her guidance during the early days in her career. She went on to train at the Neighborhood Playhouse School of the Theatre in New York and then received a scholarship to study at the Royal Academy of Dramatic Art in mid-1984.",
+            
+            'dob' => '1959-11-19',
+            'pob' => 'Boston, Massachusetts, USA',
+            'image_url' => '/img/actors/allison-janney.jpg',
+            'popularity' => 0
+
+        ]);
+
+        Actor::create([
+            'name' => 'Jurnee Smollett',
+            'gender' => 'female',
+
+            'biography' => "Jurnee Diana Smollett (born October 1, 1986) is an American actress. She began her career as a child actress appearing on television sitcoms, including On Our Own (1994-1995) and Full House (1992-1994). She gained greater recognition with her role in the critically acclaimed Kasi Lemmons' directed film Eve's Bayou (1997). As an adult, Smollett has starred in the films The Great Debaters (2007), Temptation: Confessions of a Marriage Counselor (2013), and Birds of Prey (2020). Her television roles include the NBC sports drama Friday Night Lights (2009-2011), the WGN America period drama Underground (2016-2017), and the HBO fantasy horror dramas True Blood (2013-2014) and Lovecraft Country (2020), receiving a nomination for the Primetime Emmy Award for Outstanding Lead Actress in a Drama Series for the latter. In 2020, Smollett portrayed superhero Dinah Lance / Black Canary in the DC Extended Universe (DCEU) feature film Birds of Prey, a role which she will reprise in the HBO Max film Black Canary, starring in the latter.",
+            
+            'dob' => '1986-10-01',
+            'pob' => 'New York City, New York, USA',
+            'image_url' => '/img/actors/jurnee-smollett.jpg',
+            'popularity' => 0
+
+        ]);
+
+        Actor::create([
+            'name' => 'Logan Marshall-Green',
+            'gender' => 'male',
+
+            'biography' => "Marshall-Green was born in Charleston, South Carolina, to teacher parents. He was raised by his mother, Lowry Marshall, in Cranston, Rhode Island, while she taught theatre at Brown University. He has a twin brother named Taylor. They both attended Barrington High School in the early 1990s. He did his undergraduate studies at the University of Tennessee, Knoxville, where he also wrote for the school newspaper, The Daily Beacon, as an entertainment writer covering the bar, music, and theater scene.[citation needed] He attended the National Theater Institute in Waterford, Connecticut, and then went on to earn his Master's in Fine Arts from New York University's Graduate Acting Program at the Tisch School of the Arts.",
+            
+            'dob' => '1976-11-01',
+            'pob' => 'Charleston, South Carolina, USA',
+            'image_url' => '/img/actors/logan-marshall-green.jpg',
+            'popularity' => 0
+
+        ]);
     }
 }

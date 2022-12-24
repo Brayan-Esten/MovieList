@@ -103,7 +103,7 @@
                 {{-- dob --}}
                 <div class="input-group has-validation d-flex mb-3">
                     <span class="input-group-text">DOB</span>
-                    <input type="date" id="dob" name="dob" placeholder="Email"
+                    <input type="date" id="dob" name="dob" placeholder="Date of Birth"
                         class="form-control @error('dob') is-invalid @enderror" 
                         value="{{ old('dob', date('Y-m-d', strtotime($user->dob))) }}">
                     @error('dob')
@@ -117,7 +117,7 @@
                 {{-- phone --}}
                 <div class="input-group has-validation d-flex mb-3">
                     <span class="input-group-text">Phone</span>
-                    <input type="text" id="phone" name="phone" placeholder="Email"
+                    <input type="text" id="phone" name="phone" placeholder="Phone Number"
                         class="form-control @error('phone') is-invalid @enderror" 
                         value="{{ old('phone', $user->phone) }}">
                     @error('phone')

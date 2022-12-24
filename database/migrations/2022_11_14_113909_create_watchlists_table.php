@@ -29,8 +29,8 @@ class CreateWatchlistsTable extends Migration
 
             $table->string('status')->default('planned');
 
-            $table->timestamps();
 
+            $table->timestamps();
         });
 
     }

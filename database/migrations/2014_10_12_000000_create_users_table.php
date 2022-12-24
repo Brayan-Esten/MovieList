@@ -16,15 +16,18 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
 
             $table->id();
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->date('date_joined');
+            $table->date('date_joined')->default(date('Y-m-d', time()));
+
+            // can be filled later
             $table->date('dob')->default(date('Y-m-d', time()));
             $table->string('phone')->nullable();
             $table->string('image_url')->nullable();
-            $table->boolean('is_admin')->default(false);
 
+            // default role
+            $table->boolean('is_admin')->default(false);
 
             // do not touch
             $table->timestamp('email_verified_at')->nullable();

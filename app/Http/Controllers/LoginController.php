@@ -26,7 +26,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            if($request->remember_me){
+            if($request->remember){
                 Cookie::queue('email', $request->email, 120);
                 Cookie::queue('password', $request->password, 120);
             }

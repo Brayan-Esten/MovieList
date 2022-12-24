@@ -55,9 +55,9 @@
                         </div>
 
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="halo" id="flexCheckDefault"
-                            name="remember_me">
-                            <label class="form-check-label" for="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="halo" id="remember"
+                            name="remember">
+                            <label class="form-check-label" for="remember">
                                 Remember Me
                             </label>
                         </div>
