@@ -10,7 +10,7 @@
                     
                     <div class="section-header p-3">
                         <h4 class="text-light ms-2">
-                            Add Actor
+                            Edit Actor
                         </h4>
                     </div>
 
@@ -23,7 +23,7 @@
 
                             <label for="title" class="form-label">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" 
-                            value="{{ old('name', $actor->name) }}"
+                            value="{{ $actor->name }}"
                             id="name" name="name">
 
                             @error('name')
@@ -60,7 +60,7 @@
 
                             <label for="biography" class="form-label">Biography</label>
                             <textarea type="text" class="form-control @error('biography') is-invalid @enderror" 
-                            id="biography" name="biography" rows="7">{{ old('biography', $actor->biography) }}</textarea>
+                            id="biography" name="biography" rows="7">{{ $actor->biography }}</textarea>
 
                             @error('biography')
                                 <div class="invalid-feedback">
@@ -76,7 +76,7 @@
 
                             <label for="dob" class="form-label">Date of Birth</label>
                             <input type="date" class="form-control @error('dob') is-invalid @enderror" 
-                            value="{{ old('dob', date('Y-m-d', strtotime($actor->dob))) }}"
+                            value="{{ date('Y-m-d', strtotime($actor->dob)) }}"
                             id="dob" name="dob">
 
                             @error('dob')
@@ -93,10 +93,10 @@
 
                             <label for="pob" class="form-label">Place of Birth</label>
                             <input type="text" class="form-control @error('pob') is-invalid @enderror" 
-                            value="{{ old('popularity', $actor->pob) }}"
+                            value="{{ $actor->pob }}"
                             id="pob" name="pob">
 
-                            @error('popularity')
+                            @error('pob')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -128,7 +128,7 @@
 
                             <label for="popularity" class="form-label">Popularity</label>
                             <input type="number" class="form-control @error('popularity') is-invalid @enderror" 
-                            value="{{ old('popularity', $actor->popularity) }}"
+                            value="{{ $actor->popularity }}"
                             id="popularity" name="popularity">
 
                             @error('popularity')

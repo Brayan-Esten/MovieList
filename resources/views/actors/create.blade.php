@@ -92,10 +92,10 @@
 
                             <label for="pob" class="form-label">Place of Birth</label>
                             <input type="text" class="form-control @error('pob') is-invalid @enderror" 
-                            value="{{ old('popularity') }}"
+                            value="{{ old('pob') }}"
                             id="pob" name="pob">
 
-                            @error('popularity')
+                            @error('pob')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

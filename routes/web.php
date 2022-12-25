@@ -50,4 +50,4 @@ Route::put('/users/{id}/avatar', [UserController::class, 'updateAvatar'])->middl
 
 
 // watchlist
-Route::resource('/watchlists', WatchlistController::class)->only(['index', 'store', 'update', 'destroy'])->middleware('auth');
+Route::resource('/watchlists', WatchlistController::class)->only(['index', 'store', 'update'])->middleware('auth');

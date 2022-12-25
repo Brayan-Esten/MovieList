@@ -30,8 +30,8 @@ class MovieController extends Controller
 
         $heroes = $movies->get()->random(3);
         $populars = Movie::withCount('watchlists')
-                            ->orderBy('watchlists_count', 'desc')
-                            ->get();
+                    ->orderBy('watchlists_count', 'desc')
+                    ->get();
 
 
         // specific request
@@ -58,24 +58,22 @@ class MovieController extends Controller
         }
 
 
-
         // finally
         $movies = $movies->get();
 
 
         // if user role
-        if(!auth()->user()->is_admin){
-
-            $watchlist = collect();
-            $temp =  Watchlist::select('movie_id')
-                                ->where('user_id', auth()->user()->id)
-                                ->get();
-
-            foreach($temp as $t){
-                $watchlist->push($t->movie_id);
-            } 
-
-            return view('movies.index', compact('movies', 'watchlist', 'heroes', 'populars', 'genres'));
+        if(auth()->user()){
+            if(!auth()->user()->is_admin){
+                $watchlist = collect();
+                $temp =  Watchlist::select('movie_id')
+                        ->where('user_id', auth()->user()->id)
+                        ->get();
+    
+                foreach($temp as $t) $watchlist->push($t->movie_id);
+    
+                return view('movies.index', compact('movies', 'watchlist', 'heroes', 'populars', 'genres'));
+            }
         }
 
         return view('movies.index', compact('movies', 'heroes', 'populars', 'genres'));
@@ -168,25 +166,19 @@ class MovieController extends Controller
     public function show(Movie $movie)
     {
         //
-        $casts = Character::with('actor')
-                    ->where('movie_id', $movie->id)->get();
-
         $movies = Movie::all();
+        $casts = Character::with('actor')
+                ->where('movie_id', $movie->id)->get();
 
-        $temp = null;
-        $watchlist = collect();
 
         if(auth()->user()){
+            $watchlist = collect();
             $temp =  Watchlist::select('movie_id')
-                                ->where('user_id', '=', auth()->user()->id)
-                                ->get();
+                    ->where('user_id', auth()->user()->id)
+                    ->get();
 
-            foreach($temp as $t){
-                $watchlist->push($t->movie_id);
-            }  
-        }
-
-        if(auth()->user()){
+            foreach($temp as $t) $watchlist->push($t->movie_id);
+            
             return view('movies.show', compact('movie', 'casts', 'movies', 'watchlist'));
         }
 
@@ -208,8 +200,8 @@ class MovieController extends Controller
         //
         $genre_movie = collect();
         $temp = GenreMovie::select('genre_id')
-                    ->where('movie_id', $movie->id)
-                    ->get();
+                ->where('movie_id', $movie->id)
+                ->get();
 
         foreach($temp as $t) $genre_movie->push($t->genre_id);
         

@@ -77,7 +77,7 @@
                     <span class="input-group-text">Username</span>
                     <input type="text" id="username" name="username" placeholder="Username"
                         class="form-control @error('username') is-invalid @enderror" 
-                        value="{{ old('username', $user->username) }}">
+                        value="{{ $user->username }}">
                     @error('username')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -91,7 +91,7 @@
                     <span class="input-group-text">Email</span>
                     <input type="text" id="email" name="email" placeholder="Email"
                         class="form-control @error('email') is-invalid @enderror" 
-                        value="{{ old('email', $user->email) }}">
+                        value="{{ $user->email }}">
                     @error('email')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -105,7 +105,7 @@
                     <span class="input-group-text">DOB</span>
                     <input type="date" id="dob" name="dob" placeholder="Date of Birth"
                         class="form-control @error('dob') is-invalid @enderror" 
-                        value="{{ old('dob', date('Y-m-d', strtotime($user->dob))) }}">
+                        value="{{ date('Y-m-d', strtotime($user->dob)) }}">
                     @error('dob')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -119,7 +119,7 @@
                     <span class="input-group-text">Phone</span>
                     <input type="text" id="phone" name="phone" placeholder="Phone Number"
                         class="form-control @error('phone') is-invalid @enderror" 
-                        value="{{ old('phone', $user->phone) }}">
+                        value="{{ $user->phone }}">
                     @error('phone')
                         <div class="invalid-feedback">
                             {{ $message }}

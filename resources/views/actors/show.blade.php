@@ -30,7 +30,7 @@
     
                     <div>
                         <h6 class="text-light">Birthday</h6>
-                        <p class="text-muted">{{ date('F jS Y', strtotime($actor->dob)) }}</p>
+                        <p class="text-muted">{{ date('F jS, Y', strtotime($actor->dob)) }}</p>
                     </div>
 
                     <div>
@@ -73,6 +73,7 @@
             <div class="mt-2">
                 <h5 class="text-light">Appeared in</h5>
 
+                @if($actor->movies->count() != 0)
                 <div class="d-flex flex-row flex-wrap mt-3">
                     @foreach($actor->movies as $m)
                         <div class="movie-card me-3 mb-3">
@@ -90,6 +91,13 @@
                         </div>
                     @endforeach
                 </div>
+                @else
+                <div class="no-result text-muted">
+                    <i class="bi bi-emoji-frown" style="font-size: 10rem"></i>
+                    <h4>No Results Found</h4>
+                </div>
+                @endif
+            
             </div>
         </div>
     </div>

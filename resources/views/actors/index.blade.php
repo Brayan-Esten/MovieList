@@ -15,7 +15,7 @@
                     
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search for actor ..." name="search_actor"
-                        value="{{ request('search_movie') ? request('search_movie') : '' }}">
+                        value="{{ request('search_actor') ? request('search_actor') : '' }}">
                         <button class="btn btn-primary" type="submit">Search</button>
                     </div>
 
@@ -32,7 +32,7 @@
         </div>
             
         @if($actors->count() != 0)
-            <div class="mx-auto p-3 d-flex flex-wrap" style="width: 96%">
+            <div class="mx-auto p-2 d-flex flex-wrap" style="width: 96%">
 
                 @foreach ($actors as $a)
                 <div class="cast-card m-4">

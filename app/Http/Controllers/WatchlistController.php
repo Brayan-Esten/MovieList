@@ -15,17 +15,16 @@ class WatchlistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index()
+    {
         $my_watchlist = Watchlist::with('movie')
-                ->where('user_id', auth()->user()->id);
+                        ->where('user_id', auth()->user()->id);
 
         if(request('filter_status') && request('filter_status') != 'all'){
-            $my_watchlist = $my_watchlist
-                ->where('status', request('filter_status'));
+            $my_watchlist = $my_watchlist->where('status', request('filter_status'));
         }
 
         if(request('search_watchlist') && request('search_watchlist') != ''){
-            
             $my_watchlist = $my_watchlist->whereHas('movie', function(Builder $query){
                 $query->where('title', 'like', '%'. request('search_watchlist') . '%');
             });
@@ -62,8 +61,9 @@ class WatchlistController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, $id){
-
+    public function update(Request $request, $id)
+    {
+        //
         if($request->status != 'remove'){
             Watchlist::where('id', $id)
             ->update(['status' => $request->status]);
@@ -76,22 +76,5 @@ class WatchlistController extends Controller
         Watchlist::destroy($id);
 
         return back()->with('message', $request->movie_title . ' has been removed from watchlist');
-
     }
-
-
-        /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, $id)
-    {
-        //
-        Watchlist::destroy($id);
-
-        return back()->with('message', ucwords($request->movie_title) . ' has been removed from watchlist!');
-    }
-
 }
