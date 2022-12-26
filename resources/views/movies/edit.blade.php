@@ -223,6 +223,9 @@
         </div>
     </div>
 
+    {{-- jQuery --}}
+    <script src="/js/jquery-3.6.1.min.js"></script>
+
     <script>
 
         let generateField = function(){
@@ -264,9 +267,13 @@
             }
         })
 
-        const chekboxMenu = $('.checkbox-menu');
+        const checkboxMenu = $('.checkbox-menu');
         checkboxMenu.on('change', 'input[type="checkbox"]', function () {
             $(this).closest('li').toggleClass('active', this.checked);
+        });
+
+        $('.dropdown-menu').on('click', function (e) {
+            e.stopPropagation();                 
         });
 
         document.getElementById('description').value = "{{ $movie->description }}";

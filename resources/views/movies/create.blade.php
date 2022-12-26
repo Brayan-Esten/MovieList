@@ -59,7 +59,7 @@
                                 -- Select these options --
                             </button>
 
-                            <ul class="dropdown-menu checkbox-menu allow-focus">
+                            <ul class="dropdown-menu checkbox-menu">
                                 @foreach($genres as $g)
                                 <li class="dropdown-item">
                                     <label class="form-check-label d-block w-100">
@@ -204,6 +204,9 @@
         </div>
     </div>
 
+    {{-- jQuery --}}
+    <script src="/js/jquery-3.6.1.min.js"></script>
+
     <script>
 
         let generateField = function(){
@@ -245,10 +248,14 @@
             }
         })
 
-        const chekboxMenu = $('.checkbox-menu');
+        const checkboxMenu = $('.checkbox-menu');
         checkboxMenu.on('change', 'input[type="checkbox"]', function () {
             $(this).closest('li').toggleClass('active', this.checked);
-        });        
+        });
+
+        $('.dropdown-menu').on('click', function (e) {
+            e.stopPropagation();                 
+        });
 
     </script>
 

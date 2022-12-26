@@ -43,3 +43,9 @@
     width: 20%;
     margin: 0 .5em;
 }
+
+.dropdown-item.active, .dropdown-item:active {
+    color: var(--bs-dropdown-link-active-color);
+    text-decoration: none;
+    background-color: transparent;
+}
