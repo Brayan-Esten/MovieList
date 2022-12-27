@@ -16,11 +16,6 @@ class WatchlistSeeder extends Seeder
     {
         //
         Watchlist::create([
-            'user_id' => 1,
-            'movie_id' => 4,
-        ]);
-
-        Watchlist::create([
             'user_id' => 2,
             'movie_id' => 4,
         ]);
@@ -31,8 +26,8 @@ class WatchlistSeeder extends Seeder
         ]);
 
         Watchlist::create([
-            'user_id' => 1,
-            'movie_id' => 2,
+            'user_id' => 4,
+            'movie_id' => 4,
         ]);
 
         Watchlist::create([
@@ -46,8 +41,8 @@ class WatchlistSeeder extends Seeder
         ]);
 
         Watchlist::create([
-            'user_id' => 1,
-            'movie_id' => 6,
+            'user_id' => 4,
+            'movie_id' => 2,
         ]);
 
         Watchlist::create([
@@ -56,12 +51,17 @@ class WatchlistSeeder extends Seeder
         ]);
 
         Watchlist::create([
-            'user_id' => 2,
+            'user_id' => 3,
+            'movie_id' => 6,
+        ]);
+
+        Watchlist::create([
+            'user_id' => 3,
             'movie_id' => 1,
         ]);
 
         Watchlist::create([
-            'user_id' => 3,
+            'user_id' => 4,
             'movie_id' => 1,
         ]);
 

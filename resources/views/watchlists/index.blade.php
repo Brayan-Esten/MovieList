@@ -71,7 +71,9 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header text-light">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $wl->movie->title }}</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                            {{ $wl->movie->title }} >> watching status
+                                        </h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                         style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
                                     </div>
