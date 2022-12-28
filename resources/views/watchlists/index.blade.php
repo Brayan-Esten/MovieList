@@ -50,7 +50,7 @@
                 <div class="row mt-4 rounded" style="background-color: #262524">
                     <div class="col-md-3 p-0">
                         <a href="">
-                            <img src="{{ $wl->movie->thumbnail_url }}" style="height: 175px" loading="lazy">
+                            <img src="{{ asset('storage/' . $wl->movie->thumbnail_url) }}" style="height: 175px" loading="lazy">
                         </a>
                     </div>
                     <div class="col-md-4 d-flex align-items-center">
