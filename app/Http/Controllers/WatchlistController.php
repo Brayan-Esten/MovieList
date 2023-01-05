@@ -75,6 +75,6 @@ class WatchlistController extends Controller
 
         Watchlist::destroy($id);
 
-        return back()->with('message', $request->movie_title . ' has been removed from watchlist');
+        return redirect('/watchlists')->with('message', $request->movie_title . ' has been removed from watchlist');
     }
 }
