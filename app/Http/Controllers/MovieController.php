@@ -154,7 +154,7 @@ class MovieController extends Controller
             ]);
         }
 
-        return redirect('/movies')->with('message', 'New movie added!');
+        return redirect('/movies')->with('message', 'New movie added to database!');
     }
 
     /**
@@ -289,7 +289,7 @@ class MovieController extends Controller
             ]);
         }
 
-        return redirect('/movies')->with('message', ucwords($request->title) . ' has been updated!');
+        return redirect('/movies')->with('message', ucwords($request->title) . ' information has been updated!');
     }
 
     /**
@@ -311,6 +311,6 @@ class MovieController extends Controller
             Storage::delete($movie->background_url);
         }
 
-        return redirect('/movies')->with('message', ucwords($movie->title) . ' has been removed!');
+        return redirect('/movies')->with('message', ucwords($movie->title) . ' has been removed from database!');
     }
 }

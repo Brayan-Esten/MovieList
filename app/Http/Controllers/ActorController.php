@@ -62,7 +62,7 @@ class ActorController extends Controller
 
         Actor::create($validated);
 
-        return redirect('/actors')->with('message', 'New actor added!');
+        return redirect('/actors')->with('message', 'New actor added to database!');
     }
 
     /**
@@ -119,7 +119,7 @@ class ActorController extends Controller
 
         Actor::where('id', $id)->update($validated);
 
-        return redirect('/actors')->with('message', ucwords($request->name) . ' has been updated!');
+        return redirect('/actors')->with('message', ucwords($request->name) . ' information has been updated!');
     }
 
     /**
@@ -137,6 +137,6 @@ class ActorController extends Controller
             Storage::delete($actor->image_url);
         }
 
-        return redirect('/actors')->with('message', ucwords($actor->name) . ' has been removed!');
+        return redirect('/actors')->with('message', ucwords($actor->name) . ' has been removed from database!');
     }
 }
